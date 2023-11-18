@@ -1,0 +1,12 @@
+.myInput {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 14px;
+}
+
+.myInput:focus {
+    outline: none;
+    border-color: #ff0033
+}

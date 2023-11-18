@@ -11,7 +11,7 @@ const NavBar = () => {
                 <div className={classes.shopName}>Мир Формулы-1</div>
             </div>
 
-            <input className={classes.menuToggle} id="menu-toggle-id" type="checkbox" />
+            <input className={classes.menuToggle} id="menu-toggle-id" type="checkbox"/>
             <label className={classes.menuButtonContainer} htmlFor="menu-toggle-id">
                 <div className={classes.menuButton}></div>
             </label>
