@@ -3,11 +3,9 @@ export const dataBase = [
         id: 1,
         category: "Кепки",
         price: 1999,
-        image: "../images/кепка ferrari.jpg",
+        image: "../images/кепка феррари вегас.webp",
         name: "Кепка Ferrari Vegas GP",
         description: "",
-        inWishlist: false,
-        inBasket: false
     },
     {
         id: 2,
@@ -16,8 +14,6 @@ export const dataBase = [
         image: "../images/худи мермедес.webp",
         name: "Худи Mercedes Stealth",
         description: "",
-        inWishlist: false,
-        inBasket: false
     },
     {
         id: 3,
@@ -26,8 +22,6 @@ export const dataBase = [
         image: "../images/худи ферари.webp",
         name: "Худи Ferrari Vegas GP",
         description: "",
-        inWishlist: false,
-        inBasket: false
     },
     {
         id: 4,
@@ -36,8 +30,6 @@ export const dataBase = [
         image: "../images/кепка алонсо.webp",
         name: "Кепка Alonso 14",
         description: "",
-        inWishlist: false,
-        inBasket: false
     },
     {
         id: 5,
@@ -46,8 +38,6 @@ export const dataBase = [
         image: "../images/лего w12.webp",
         name: "Lego Speed Champions Mercedes W12 & Mercedes-AMG One",
         description: "",
-        inWishlist: false,
-        inBasket: false
     },
     {
         id: 6,
@@ -56,8 +46,6 @@ export const dataBase = [
         image: "../images/лего макларен.webp",
         name: "Lego McLaren Formula 1",
         description: "",
-        inWishlist: false,
-        inBasket: false
     },
     {
         id: 7,
@@ -66,8 +54,6 @@ export const dataBase = [
         image: "../images/модель w13.jpg",
         name: "Модель Mercedes W13",
         description: "1:18",
-        inWishlist: false,
-        inBasket: false
     },
     {
         id: 8,
@@ -76,8 +62,6 @@ export const dataBase = [
         image: "../images/модель ferrari sf23.jpg",
         name: "Модель Ferrari SF-23",
         description: "",
-        inWishlist: false,
-        inBasket: false
     },
     {
         id: 9,
@@ -86,8 +70,6 @@ export const dataBase = [
         image: "../images/футболка ferrari.jpg",
         name: "Футболка Ferrari 23",
         description: "",
-        inWishlist: false,
-        inBasket: false
     },
     {
         id: 10,
@@ -96,8 +78,6 @@ export const dataBase = [
         image: "../images/футболка red bull.jpg",
         name: "Футболка Red Bull 23",
         description: "",
-        inWishlist: false,
-        inBasket: false
     },
     {
         id: 11,
@@ -106,8 +86,6 @@ export const dataBase = [
         image: "../images/футболка mercedes.png",
         name: "Футболка Mercedes 23",
         description: "",
-        inWishlist: false,
-        inBasket: false
     },
     {
         id: 12,
@@ -116,8 +94,6 @@ export const dataBase = [
         image: "../images/футболка NOR_4.png",
         name: "Футболка NOR 4",
         description: "",
-        inWishlist: false,
-        inBasket: false
     },
     {
         id: 13,
@@ -126,8 +102,6 @@ export const dataBase = [
         image: "../images/кепка ferrari.jpg",
         name: "Кепка Leclerc 16",
         description: "",
-        inWishlist: false,
-        inBasket: false
     },
     {
         id: 14,
@@ -136,8 +110,6 @@ export const dataBase = [
         image: "../images/кепка red bull.jpg",
         name: "Кепка Red Bull 23",
         description: "",
-        inWishlist: false,
-        inBasket: false
     },
     {
         id: 15,
@@ -146,8 +118,6 @@ export const dataBase = [
         image: "../images/постер ver.jpg",
         name: "Постер Max Verstappen",
         description: "",
-        inWishlist: false,
-        inBasket: false
     },
     {
         id: 16,
@@ -156,8 +126,6 @@ export const dataBase = [
         image: "../images/постер lec.png",
         name: "Постер Charles Leclerc",
         description: "",
-        inWishlist: false,
-        inBasket: false
     },
     {
         id: 17,
@@ -166,8 +134,6 @@ export const dataBase = [
         image: "../images/худи мерседес.png",
         name: "Худи Mercedes 23",
         description: "",
-        inWishlist: false,
-        inBasket: false
     },
     {
         id: 18,
@@ -176,8 +142,6 @@ export const dataBase = [
         image: "../images/худи феррари.jpg",
         name: "Худи Ferrari 23",
         description: "",
-        inWishlist: false,
-        inBasket: false
     },
     {
         id: 19,
@@ -186,8 +150,6 @@ export const dataBase = [
         image: "../images/худи red bull.jpg",
         name: "Худи Red Bull 23",
         description: "",
-        inWishlist: false,
-        inBasket: false
     },
     {
         id: 20,
@@ -196,8 +158,6 @@ export const dataBase = [
         image: "../images/календарь hamilton.png",
         name: "Календарь 2024 Hamilton",
         description: "",
-        inWishlist: false,
-        inBasket: false
     },
     {
         id: 21,
@@ -206,8 +166,6 @@ export const dataBase = [
         image: "../images/календарь red bull.png",
         name: "Календарь 2024 Red Bull",
         description: "",
-        inWishlist: false,
-        inBasket: false
     },
     {
         id: 22,
@@ -216,7 +174,309 @@ export const dataBase = [
         image: "../images/кепка pirelli.jpg",
         name: "Кепка Pirelli",
         description: "",
-        inWishlist: false,
-        inBasket: false
+    },
+    {
+        id: 23,
+        category: "Шлемы",
+        price: 19990,
+        image: "../images/шлем leclerc.webp",
+        name: "Charles Leclerc #16 Official 2023 1:2 Helmet",
+        description: "",
+    },
+    {
+        id: 24,
+        category: "Шлемы",
+        price: 23990,
+        image: "../images/шлем Перс австрия.webp",
+        name: "Sergio Perez #11 2022 Austria Mini Helmet 1:2",
+        description: "",
+    },
+    {
+        id: 25,
+        category: "Шлемы",
+        price: 29990,
+        image: "../images/Шлем шумахер 2000.webp",
+        name: "Michael Schumacher 2000 World Champ 1:2 Mini Helmet",
+        description: "",
+    },
+    {
+        id: 26,
+        category: "Шлемы",
+        price: 26990,
+        image: "../images/шлем Перес 2023.webp",
+        name: "Sergio Perez #11 Official 2023 1:2 Helmet",
+        description: "",
+    },
+    {
+        id: 27,
+        category: "Модели",
+        price: 46990,
+        image: "../images/модель феррари монца.webp",
+        name: "F75 #16 Leclerc Monza Special Edition 1:43 Car Model",
+        description: "",
+    },
+    {
+        id: 28,
+        category: "Худи",
+        price: 13490,
+        image: "../images/худи Мерседес 2023.webp",
+        name: "Mercedes 2023 Team Hoody",
+        description: "",
+    },
+    {
+        id: 29,
+        category: "Худи",
+        price: 19990,
+        image: "../images/худи сайнс вегас.webp",
+        name: "2023 Joshua Vides - Vegas GP Edition - Sainz Team Hoody",
+        description: "",
+    },
+    {
+        id: 30,
+        category: "Брелоки",
+        price: 999,
+        image: "../images/брелок ред булл.webp",
+        name: "RBR 2023 Strap Keyring",
+        description: "",
+    },
+    {
+        id: 31,
+        category: "Футболки",
+        price: 999,
+        image: "../images/Футболка Red Bull Constructors Cup 2023.png",
+        name: "Футболка Red Bull Constructors Cup 2023",
+        description: "",
+    },
+    {
+        id: 32,
+        category: "Брелоки",
+        price: 999,
+        image: "../images/брелок астон.webp",
+        name: "2023 Official Team Keyring",
+        description: "",
+    },
+    {
+        id: 33,
+        category: "Постеры",
+        price: 899,
+        image: "../images/Постер Sainz 21.jpg",
+        name: "Постер Sainz 21",
+        description: "",
+    },
+    {
+        id: 34,
+        category: "Брелоки",
+        price: 999,
+        image: "../images/брелок сенна.webp",
+        name: "Senna Helmet Keyring",
+        description: "",
+    },
+    {
+        id: 35,
+        category: "Брелоки",
+        price: 999,
+        image: "../images/брелок макларен.webp",
+        name: "McLaren Team Leather Keyring",
+        description: "",
+    },
+    {
+        id: 36,
+        category: "Футболки",
+        price: 2499,
+        image: "../images/футболка VER_33.png",
+        name: "Футболка VER 33",
+        description: "",
+    },
+    {
+        id: 37,
+        category: "Худи",
+        price: 3499,
+        image: "../images/Худи Aston Martin 2023.jpg",
+        name: "Худи Aston Martin 2023",
+        description: "",
+    },
+    {
+        id: 38,
+        category: "Футболки",
+        price: 1999,
+        image: "../images/футболка хас.jpg",
+        name: "Футболка Haas 23",
+        description: "",
+    },
+    {
+        id: 39,
+        category: "Футболки",
+        price: 1999,
+        image: "../images/Футболка Aston Martin Racing.png",
+        name: "Футболка Aston Martin Racing",
+        description: "",
+    },
+    {
+        id: 40,
+        category: "Кепки",
+        price: 2499,
+        image: "../images/кепка формула 1 голубая.webp",
+        name: "Formula 1 Pastel Trucker Cap",
+        description: "",
+    },
+    {
+        id: 41,
+        category: "Футболки",
+        price: 2499,
+        image: "../images/футболка формула 1 бежевый.webp",
+        name: "Formula 1 Pastel T-Shirt",
+        description: "",
+    },
+    {
+        id: 42,
+        category: "Футболки",
+        price: 3499,
+        image: "../images/футболка месесдес стэлс.webp",
+        name: "Mercedes Stealth Team T-Shirt",
+        description: "",
+    },
+    {
+        id: 43,
+        category: "Футболки",
+        price: 3499,
+        image: "../images/Verstappen 2023 Fanwear T-Shirt.webp",
+        name: "Verstappen 2023 Fanwear T-Shirt",
+        description: "",
+    },
+    {
+        id: 44,
+        category: "Модели",
+        price: 14990,
+        image: "../images/модель макларен сенна.jpg",
+        name: "1:43 1983 McLaren Ford MP4/1C",
+        description: "",
+    },
+    {
+        id: 45,
+        category: "Кепки",
+        price: 1999,
+        image: "../images/кепка мерседес черный.webp",
+        name: "Mercedes 2023 Team Cap",
+        description: "",
+    },
+    {
+        id: 46,
+        category: "Кепки",
+        price: 1999,
+        image: "../images/кепка альфа таури.webp",
+        name: "Alpha Tauri 2023 Team Cap",
+        description: "",
+    },
+    {
+        id: 47,
+        category: "Кепки",
+        price: 1999,
+        image: "../images/кепка 9fforty макларен.webp",
+        name: "McLaren 2023 9FORTY Contrast Cap",
+        description: "",
+    },
+    {
+        id: 48,
+        category: "Кепки",
+        price: 2499,
+        image: "../images/Norris 2023 Silverstone Cap.webp",
+        name: "Norris 2023 Silverstone Cap",
+        description: "",
+    },
+    {
+        id: 49,
+        category: "Кепки",
+        price: 2499,
+        image: "../images/Alonso 2023 Spanish GP Cap SE.webp",
+        name: "Alonso 2023 Spanish GP Cap SE",
+        description: "",
+    },
+    {
+        id: 50,
+        category: "Кепки",
+        price: 1999,
+        image: "../images/McLaren 2023 Team Cap.webp",
+        name: "McLaren 2023 Team Cap",
+        description: "",
+    },
+    {
+        id: 51,
+        category: "Кепки",
+        price: 1999,
+        image: "../images/Formula 1Large Logo Cap.webp",
+        name: "Formula 1Large Logo Cap",
+        description: "",
+    },
+    {
+        id: 52,
+        category: "Кепки",
+        price: 2499,
+        image: "../images/кепка мерседес белый.webp",
+        name: "Mercedes 2023 Team Cap",
+        description: "",
+    },
+    {
+        id: 53,
+        category: "Шлемы",
+        price: 24999,
+        image: "../images/George Russell 63 Official 2023 Helmet.webp",
+        name: "George Russell #63 Official 2023 1:5 Helmet",
+        description: "",
+    },
+    {
+        id: 54,
+        category: "Шлемы",
+        price: 29999,
+        image: "../images/Ayrton Senna 1994 Mini Helmet.webp",
+        name: "Ayrton Senna 1994 Mini Helmet 1:2",
+        description: "",
+    },
+    {
+        id: 55,
+        category: "Модели",
+        price: 34999,
+        image: "../images/MCL36 4 Norris Signature Car Model.webp",
+        name: "MCL36 #4 Norris Signature 1:43 Car Model",
+        description: "",
+    },
+    {
+        id: 56,
+        category: "Модели",
+        price: 29999,
+        image: "../images/C42 Alfa Romeo 2022 Bottas Car Model.webp",
+        name: "C42 Alfa Romeo 2022 Bottas Car Model 1:43",
+        description: "",
+    },
+    {
+        id: 57,
+        category: "Худи",
+        price: 5990,
+        image: "../images/2023 Alonso Hoody.webp",
+        name: "2023 Alonso Hoody",
+        description: "",
+    },
+    {
+        id: 58,
+        category: "Постеры",
+        price: 899,
+        image: "../images/Постер Alonso 2005.jpg",
+        name: "Постер Alonso 2005",
+        description: "",
+    },
+    {
+        id: 59,
+        category: "Постеры",
+        price: 899,
+        image: "../images/Постер Ayrton Senna.jpg",
+        name: "Постер Ayrton Senna",
+        description: "",
+    },
+    {
+        id: 60,
+        category: "Постеры",
+        price: 899,
+        image: "../images/Постер Lando Norris Monaco 21.jpg",
+        name: "Постер Lando Norris Monaco 21",
+        description: "",
     },
 ]
