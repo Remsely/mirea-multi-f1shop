@@ -17,8 +17,8 @@ const NavBar = () => {
             </label>
             <ul className={classes.menu}>
                 {navBarItems.map(item =>
-                    <li className={classes.menuLi}>
-                        <Link className={classes.links} to={item.link} key={item.link}>
+                    <li key={item.link} className={classes.menuLi}>
+                        <Link className={classes.links} to={item.link}>
                             {item.title}
                         </Link>
                     </li>

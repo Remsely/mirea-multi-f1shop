@@ -1,23 +1,12 @@
 import React from 'react';
+import classes from "./ProductCard.module.css";
 
-const ProductCard = ({imgURL, name, isLiked, inBasket, price}) => {
+const ProductCard = ({imgURL, name, price}) => {
     return (
-        <div>
-            <div>
-                <img src={imgURL} alt={name}/>
-                {isLiked
-                    ? <img src="" alt="like icon"/>
-                    : <img src="" alt="like icon"/>
-                }
-            </div>
-            <div>{name}</div>
-            <div>
-                <div>{price}</div>
-                {inBasket
-                    ? <img src="" alt="like icon"/>
-                    : <img src="" alt="like icon"/>
-                }
-            </div>
+        <div className={classes.card}>
+            <img className={classes.image} src={imgURL} alt={name}/>
+            <div className={classes.name}>{name}</div>
+            <div className={classes.price}> {price}</div>
         </div>
     );
 };

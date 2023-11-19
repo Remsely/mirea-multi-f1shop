@@ -1,10 +1,10 @@
 import React from 'react';
 import classes from "./MyInput.module.css";
 
-const MyInput = ({placeHolder, style}) => {
+const MyInput = React.forwardRef((props, ref) => {
     return (
-        <input style={style} type="text" className={classes.myInput} placeholder={placeHolder}/>
+        <input ref={ref} type="text" className={classes.myInput} {...props}/>
     );
-};
+});
 
 export default MyInput;

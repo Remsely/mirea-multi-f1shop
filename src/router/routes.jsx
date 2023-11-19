@@ -1,8 +1,9 @@
-import Catalog from "../pages/Catalog";
-import WishList from "../pages/WishList";
-import Basket from "../pages/Basket";
-import AboutUs from "../pages/AboutUs";
-import ProductPage from "../pages/ProductPage";
+import Catalog from "../pages/Catalog/Catalog";
+import WishList from "../pages/Wishlist/WishList";
+import Basket from "../pages/Basket/Basket";
+import AboutUs from "../pages/AboutUs/AboutUs";
+import ProductPage from "../pages/ProdustPage/ProductPage";
+
 
 export const privateRoutes = [
     {path: '/catalog', element: <Catalog/>},
