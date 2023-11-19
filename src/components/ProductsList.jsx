@@ -12,6 +12,7 @@ const ProductsList = ({productList}) => {
                             imgURL={product.image}
                             name={product.name}
                             price={product.price + "₽"}
+                            id={product.id}
                             key={product.id}/>
                     )}
                 </div>
