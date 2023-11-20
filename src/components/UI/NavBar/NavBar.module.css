@@ -7,7 +7,7 @@
 
 .shopName {
     font-weight: bold;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     margin-left: 5px;
 }
 
@@ -47,7 +47,7 @@ html, body {
     align-items: center;
     justify-content: space-between;
     background-color: #fff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     color: #000;
     height: 50px;
     padding: 5px;
@@ -65,6 +65,7 @@ html, body {
 .menu > .menuLi {
     margin: 0 1rem;
     overflow: hidden;
+    font-size: 1.1rem;
 }
 
 .menuButtonContainer {
@@ -156,7 +157,7 @@ html, body {
 
     .menuToggle:checked ~ .menu li:last-child {
         transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
 
     .menu > .menuLi {

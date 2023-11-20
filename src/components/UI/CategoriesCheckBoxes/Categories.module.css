@@ -22,4 +22,5 @@ input[type=checkbox] {
     width: 18px;
     border-radius: 5px;
     background-color: #ff0033;
+    cursor: pointer;
 }
