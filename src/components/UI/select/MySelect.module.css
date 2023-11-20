@@ -1,6 +1,7 @@
 .select {
+    display: block;
     padding: 5px;
-    margin: 5px;
+    margin: 5px auto;
     border: 1px solid #ccc;
     border-radius: 5px;
     cursor: pointer;

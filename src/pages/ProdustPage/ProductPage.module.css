@@ -1,0 +1,59 @@
+.parentContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #fff;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    padding: 5px;
+    border-radius: 25px;
+    margin-top: 5px;
+}
+
+.img {
+    max-width: 570px;
+    padding: 5px;
+    border-radius: 20px;
+    height: auto;
+    object-fit: contain;
+}
+
+.descriptionContainer {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    padding: 5px;
+    max-width: 570px;
+    align-self: stretch;
+}
+
+.description {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.buttonsAndPriceContainer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.buttonsContainer {
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 1165px) {
+    .img {
+        max-width: 100%;
+    }
+
+    .descriptionContainer {
+        max-width: 100%;
+    }
+}

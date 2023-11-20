@@ -1,6 +1,6 @@
 import React from 'react';
-import classes from "../pages/Catalog/Catalog.module.css";
-import ProductCard from "./UI/productCard/ProductCard";
+import classes from "./ProductList.module.css";
+import ProductCard from "../UI/productCard/ProductCard";
 
 const ProductsList = ({productList}) => {
     return (
