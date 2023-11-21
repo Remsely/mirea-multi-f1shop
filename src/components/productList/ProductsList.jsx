@@ -4,7 +4,7 @@ import ProductCard from "../UI/productCard/ProductCard";
 
 const ProductsList = ({productList}) => {
     return (
-        <div>
+        <div className={classes.container}>
             {productList.length
                 ? <div className={classes.productList}>
                     {productList.map(product =>

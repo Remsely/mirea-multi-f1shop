@@ -4,3 +4,9 @@
     flex-wrap: wrap;
     justify-content: space-around;
 }
+
+.container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}

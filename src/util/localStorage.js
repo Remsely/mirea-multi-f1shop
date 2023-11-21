@@ -1,6 +1,6 @@
 export default class LocalStorage {
     static addToCart(id) {
-        const storedData = JSON.parse(localStorage.getItem("cart")) || [];
+        const storedData = this.getCartIDs();
         if (!this.isInCart(id)) {
             storedData.push({id: id, count: 1});
             localStorage.setItem("cart", JSON.stringify(storedData))
@@ -8,7 +8,7 @@ export default class LocalStorage {
     }
 
     static addToWishlist(id) {
-        const storedData = JSON.parse(localStorage.getItem("wishlist")) || [];
+        const storedData = this.getWishlistIDs();
         if (!storedData.includes(id)) {
             storedData.push(id);
             localStorage.setItem("wishlist", JSON.stringify(storedData))
@@ -16,14 +16,14 @@ export default class LocalStorage {
     }
 
     static removeFromCart(id) {
-        const storedData = JSON.parse(localStorage.getItem("cart")) || [];
+        const storedData = this.getCartIDs();
         console.log(storedData);
         const updatedData = storedData.filter(obj => obj.id !== id);
         localStorage.setItem("cart", JSON.stringify(updatedData));
     }
 
     static removeFromWishlist(id) {
-        const storedData = JSON.parse(localStorage.getItem("wishlist")) || [];
+        const storedData = this.getWishlistIDs();
         const updatedData = storedData.filter(storedId => storedId !== id);
         localStorage.setItem("wishlist", JSON.stringify(updatedData));
     }
@@ -33,18 +33,18 @@ export default class LocalStorage {
     }
 
     static isInCart(id) {
-        const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+        const cartItems = this.getCartIDs();
         const selectedItemIndex = this.findIdInCart(cartItems, id);
         return selectedItemIndex !== -1;
     }
 
     static isInWishlist(id) {
-        const storedData = JSON.parse(localStorage.getItem("wishlist")) || [];
+        const storedData = this.getWishlistIDs();
         return storedData.includes(id);
     }
 
     static increaseInCart(id) {
-        const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+        const cartItems = this.getCartIDs();
         const selectedItemIndex = this.findIdInCart(cartItems, id);
 
         if (selectedItemIndex !== -1) {
@@ -54,12 +54,21 @@ export default class LocalStorage {
     }
 
     static decreaseInCart(id) {
-        const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+        const cartItems = this.getCartIDs();
         const selectedItemIndex = this.findIdInCart(cartItems, id);
 
         if (selectedItemIndex !== -1) {
             cartItems[selectedItemIndex].count = parseInt(cartItems[selectedItemIndex].count) - 1;
             localStorage.setItem("cart", JSON.stringify(cartItems))
         }
+    }
+
+    static getWishlistIDs() {
+        console.log(JSON.parse(localStorage.getItem("wishlist")) || []);
+        return JSON.parse(localStorage.getItem("wishlist")) || [];
+    }
+
+    static getCartIDs() {
+        return JSON.parse(localStorage.getItem("cart")) || [];
     }
 }
