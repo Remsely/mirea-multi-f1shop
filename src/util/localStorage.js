@@ -1,3 +1,5 @@
+import {dataBase} from "../API/dataBase";
+
 export default class LocalStorage {
     static addToCart(id) {
         const storedData = this.getCartIDs();
@@ -17,7 +19,6 @@ export default class LocalStorage {
 
     static removeFromCart(id) {
         const storedData = this.getCartIDs();
-        console.log(storedData);
         const updatedData = storedData.filter(obj => obj.id !== id);
         localStorage.setItem("cart", JSON.stringify(updatedData));
     }
@@ -64,11 +65,23 @@ export default class LocalStorage {
     }
 
     static getWishlistIDs() {
-        console.log(JSON.parse(localStorage.getItem("wishlist")) || []);
         return JSON.parse(localStorage.getItem("wishlist")) || [];
     }
 
     static getCartIDs() {
         return JSON.parse(localStorage.getItem("cart")) || [];
+    }
+
+    static setCartItems() {
+        const cartObjects = LocalStorage.getCartIDs();
+
+        return LocalStorage.getCartIDs().length ? cartObjects.map(({id, count}) => {
+            const databaseItem = dataBase.find(item => item.id === id);
+            if (databaseItem) {
+                const {name, image, price} = databaseItem;
+                return {id: id, name: name, image: image, price: price, count: count}
+            }
+            return null;
+        }) : [];
     }
 }

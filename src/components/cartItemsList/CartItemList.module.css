@@ -1,0 +1,13 @@
+.container {
+    background-color: #fff;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    padding: 15px 15px 10px;
+    border-radius: 20px;
+    margin-top: 5px;
+}
+
+.fullPrice {
+    margin-top: 5px;
+    font-size: 2rem;
+    font-weight: bold;
+}

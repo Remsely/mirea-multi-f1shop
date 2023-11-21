@@ -2,7 +2,7 @@ import Catalog from "../pages/Catalog/Catalog";
 import WishList from "../pages/Wishlist/WishList";
 import Cart from "../pages/Cart/Cart";
 import AboutUs from "../pages/AboutUs/AboutUs";
-import ProductPage from "../pages/ProdustPage/ProductPage";
+import ProductPage from "../pages/ProduсtPage/ProductPage";
 
 
 export const privateRoutes = [

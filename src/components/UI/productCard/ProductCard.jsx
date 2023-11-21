@@ -11,7 +11,7 @@ const ProductCard = ({imgURL, name, price, id, remove}) => {
 
     function handleWishlistAction(e) {
         e.stopPropagation();
-        if(inWishlist) {
+        if (inWishlist) {
             LocalStorage.removeFromWishlist(product.id)
             remove(product);
         } else {
@@ -23,18 +23,19 @@ const ProductCard = ({imgURL, name, price, id, remove}) => {
     return (
         <div className={classes.card} onClick={() => router(`/catalog/${id}`)}>
             {inWishlist
-            ? <img
+                ? <img
                     className={classes.wishListIcon}
                     src={"../icons/love-active.svg"}
                     alt={"name"}
                     onClick={handleWishlistAction}
                 />
-            : <img
+                : <img
                     className={classes.wishListIcon}
                     src={"../icons/love-inactive.svg"}
                     alt={"name"}
                     onClick={handleWishlistAction}
-                />}
+                />
+            }
             <img className={classes.image} src={imgURL} alt={name}/>
             <div className={classes.name}>{name}</div>
             <div className={classes.price}> {price}</div>
