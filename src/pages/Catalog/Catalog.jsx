@@ -53,7 +53,10 @@ const Catalog = () => {
                     {value: 'dec', name: 'По убыванию цены'},
                 ]}
             />
-            <ProductsList productList={sortedAndSearchedAndFilteredProducts}/>
+            <ProductsList
+                productList={sortedAndSearchedAndFilteredProducts}
+                remove={() => setProducts(products)}
+            />
         </ContentDiv>
     );
 };

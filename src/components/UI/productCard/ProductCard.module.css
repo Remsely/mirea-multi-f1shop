@@ -13,6 +13,7 @@
     cursor: pointer;
     transition: 300ms;
     border: 2px solid #fff;
+    position: relative;
 }
 
 .card:hover {
@@ -37,4 +38,14 @@
     width: 100%;
     text-align: center;
     font-weight: bold;
+}
+
+.wishListIcon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    object-fit: contain;
 }
