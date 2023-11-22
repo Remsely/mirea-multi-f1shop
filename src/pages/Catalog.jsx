@@ -1,11 +1,11 @@
 import React, {useMemo, useState} from 'react';
-import MyInput from "../../components/UI/input/MyInput";
-import {dataBase} from "../../API/dataBase";
-import CategoriesCheckBoxes from "../../components/UI/CategoriesCheckBoxes/CategoriesCheckBoxes";
-import {categoriesList} from "../../components/UI/CategoriesCheckBoxes/categoriesList";
-import MySelect from "../../components/UI/select/MySelect";
-import ProductsList from "../../components/productList/ProductsList";
-import ContentDiv from "../../components/UI/contentDiv/ContentDiv";
+import MyInput from "../components/UI/input/MyInput";
+import {dataBase} from "../API/dataBase";
+import CategoriesCheckBoxes from "../components/UI/CategoriesCheckBoxes/CategoriesCheckBoxes";
+import {categoriesList} from "../components/UI/CategoriesCheckBoxes/categoriesList";
+import MySelect from "../components/UI/select/MySelect";
+import ProductsList from "../components/productList/ProductsList";
+import ContentDiv from "../components/UI/contentDiv/ContentDiv";
 
 const Catalog = () => {
     const [selectedCategories, setSelectedCategories] = useState(categoriesList);

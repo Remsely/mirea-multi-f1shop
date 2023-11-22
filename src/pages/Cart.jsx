@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import ContentDiv from "../../components/UI/contentDiv/ContentDiv";
-import LocalStorage from "../../util/localStorage";
-import CartItemList from "../../components/cartItemsList/CartItemList";
-import OrderForm from "../../components/orderForm/OrderForm";
+import ContentDiv from "../components/UI/contentDiv/ContentDiv";
+import LocalStorage from "../util/localStorage";
+import CartItemList from "../components/cartItemsList/CartItemList";
+import OrderForm from "../components/orderForm/OrderForm";
 
 const Cart = () => {
     const cartItems = LocalStorage.setCartItems();

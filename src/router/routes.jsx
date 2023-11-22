@@ -1,8 +1,8 @@
-import Catalog from "../pages/Catalog/Catalog";
-import WishList from "../pages/Wishlist/WishList";
-import Cart from "../pages/Cart/Cart";
-import AboutUs from "../pages/AboutUs/AboutUs";
-import ProductPage from "../pages/ProduсtPage/ProductPage";
+import Catalog from "../pages/Catalog";
+import WishList from "../pages/WishList";
+import Cart from "../pages/Cart";
+import AboutUs from "../pages/AboutUs";
+import ProductPage from "../pages/ProductPage";
 
 
 export const privateRoutes = [
