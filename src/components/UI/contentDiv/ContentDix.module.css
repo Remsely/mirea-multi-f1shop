@@ -1,5 +1,6 @@
 .div {
-    max-width: 1160px;
-    margin: 0 auto;
+    max-width: 1170px;
+    width: 100%;
     padding: 0 5px;
+    margin: 0 auto 10px;
 }

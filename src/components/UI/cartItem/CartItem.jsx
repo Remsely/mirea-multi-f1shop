@@ -38,7 +38,7 @@ const CartItem = ({item, remove, updateFullPrice}) => {
             <div className={classes.specifiesContainer}>
                 <div className={classes.nameAndDelContainer}>
                     <div className={classes.name}>{item.name}</div>
-                    <CartButton style={{padding: "3px"}} icon={"../icons/close.svg"} onClick={removeItem}/>
+                    <CartButton style={{border: "none"}} icon={"../icons/close.svg"} onClick={removeItem}/>
                 </div>
                 <div className={classes.priceAndCountContainer}>
                     <div className={classes.price}>{price + "₽"}</div>
