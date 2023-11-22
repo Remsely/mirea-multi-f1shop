@@ -13,7 +13,8 @@ const FormInput = ({id, type, title, placeHolder, value, onChange}) => {
                 id={id}
                 name={id}
                 placeholder={placeHolder}
-                required/>
+                required
+            />
         </div>
     );
 };

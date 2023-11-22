@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import {dataBase} from "../../API/dataBase";
-import LocalStorage from "../../util/localStorage";
-import ContentDiv from "../../components/UI/contentDiv/ContentDiv";
-import ProductsList from "../../components/productList/ProductsList";
+import {dataBase} from "../API/dataBase";
+import LocalStorage from "../util/localStorage";
+import ContentDiv from "../components/UI/contentDiv/ContentDiv";
+import ProductsList from "../components/productList/ProductsList";
 
 const WishList = () => {
     const wishlistProductsIDs = LocalStorage.getWishlistIDs();

@@ -5,7 +5,7 @@ import MyButton from "../buttons/commonButton/MyButton";
 const OrderSuccessModal = ({children, visible, setVisible, clearCart}) => {
     const rootClasses = [cl.myModal]
 
-    if(visible)
+    if (visible)
         rootClasses.push(cl.active)
 
     function close() {
