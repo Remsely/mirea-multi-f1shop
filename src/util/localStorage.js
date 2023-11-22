@@ -84,4 +84,8 @@ export default class LocalStorage {
             return null;
         }) : [];
     }
+
+    static clearCart() {
+        localStorage.removeItem("cart");
+    }
 }

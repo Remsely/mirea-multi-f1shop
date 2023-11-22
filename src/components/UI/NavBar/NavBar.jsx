@@ -1,12 +1,14 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import classes from "./NavBar.module.css";
 import {navBarItems} from "./navbarItems";
 
 const NavBar = () => {
+    const router = useNavigate()
+
     return (
         <section className={classes.topNav}>
-            <div className={classes.logoDiv}>
+            <div className={classes.logoDiv} onClick={() => router(`/catalog`)}>
                 <img className={classes.logoImg} src="/logo.svg" alt="Логотип магазина"/>
                 <div className={classes.shopName}>Мир Формулы-1</div>
             </div>

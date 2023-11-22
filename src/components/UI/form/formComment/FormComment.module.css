@@ -1,0 +1,19 @@
+.container {
+    width: 100%;
+}
+
+.textArea {
+    display: block;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 14px;
+    width: 100%;
+    margin: 5px 0 12px;
+}
+
+.textArea:focus {
+    outline: none;
+    border-color: #6ea1f5;
+}

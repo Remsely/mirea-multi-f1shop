@@ -1,0 +1,11 @@
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 5px;
+    justify-content: center;
+    border-radius: 20px;
+    padding: 10px 10px 8px;
+}
