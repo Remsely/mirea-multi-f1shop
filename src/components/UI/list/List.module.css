@@ -1,0 +1,12 @@
+.ul {
+    padding: 5px 0 5px 20px;
+    list-style-type: square;
+}
+
+.li {
+    padding: 5px 0;
+}
+
+.h {
+    padding-top: 10px;
+}

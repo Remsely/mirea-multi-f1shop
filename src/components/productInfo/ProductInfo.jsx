@@ -3,10 +3,12 @@ import classes from "./ProductInfo.module.css";
 import MyCheckedButton from "../UI/buttons/checkedButton/MyCheckedButton";
 import MyButton from "../UI/buttons/commonButton/MyButton";
 import LocalStorage from "../../util/localStorage";
+import {useNavigate} from "react-router-dom";
 
 const ProductInfo = ({product}) => {
     const [inCart, setInCart] = useState(LocalStorage.isInCart(product.id));
     const [inWishlist, setInWishlist] = useState(LocalStorage.isInWishlist(product.id));
+    const router = useNavigate()
 
     function handleCartAction() {
         inCart ? LocalStorage.removeFromCart(product.id) : LocalStorage.addToCart(product.id);
@@ -36,6 +38,12 @@ const ProductInfo = ({product}) => {
                         }
                     </div>
                 </div>
+                <img
+                    className={classes.wishListIcon}
+                    src={"../icons/close.svg"}
+                    alt={"name"}
+                    onClick={() => router(-1)}
+                />
             </div>
         </div>
     );
