@@ -41,7 +41,7 @@ const Footer = () => {
                                         target="_blank"
                                         rel="noreferrer"
                                     >
-                                        Ядрес
+                                        Адрес
                                     </a>
                                 </li>
                             </ul>

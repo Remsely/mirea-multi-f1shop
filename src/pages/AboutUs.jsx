@@ -61,6 +61,7 @@ const AboutUs = () => {
                         src={"../F1Shop/logos/fueler.webp"}
                         alt={"fueler logo"}
                         style={{backgroundColor: "#000"}}
+                        link={"https://fueler.store/collections/f1-2023-collection"}
                     />
                     <InfoP>
                         Мы гордимся тем, что являемся партнерами с F1 Merch - авторитетным и надежным поставщиком
@@ -72,6 +73,7 @@ const AboutUs = () => {
                     <InfoImage
                         src={"../F1Shop/logos/f1merch.jpg"}
                         alt={"fueler logo"}
+                        link={"https://merchf1.ru/"}
                     />
                     <InfoP>
                         Fueler Store - наш партнер, который разделяет с нами страсть к Формуле 1 и предлагает уникальные
@@ -159,7 +161,7 @@ const AboutUs = () => {
                         title={"Наша фабрика"}
                     />
                     <InfoP>
-                        Заходите в гости по адресу Проспект Вернадского 78! С нетерпиением ждем вас!
+                        Заходите в гости по адресу Проспект Вернадского 78! С нетерпением ждем вас!
                     </InfoP>
                 </ContentFrame>
             </ContentDiv>
