@@ -1,8 +1,11 @@
 import React from 'react';
 import ContentDiv from "../components/UI/contentDiv/ContentDiv";
-import classes from "./ContentBlock.module.css";
 import ContentFrame from "../components/UI/contentFrame/ContentFrame";
-import List from "../components/UI/list/List";
+import List from "../components/UI/infoComponents/list/List";
+import InfoP from "../components/UI/infoComponents/infoP/InfoP";
+import InfoTitle from "../components/UI/infoComponents/infoTitle/InfoTitle";
+import InfoImage from "../components/UI/infoComponents/infoImage/InfoImage";
+import YandexMapWidget from "../components/UI/yandexMapWidget/YandexMapWidget";
 
 const AboutUs = () => {
     return (
@@ -10,10 +13,10 @@ const AboutUs = () => {
             <ContentDiv>
                 <h1>О нас</h1>
                 <ContentFrame>
-                    <p className={classes.p}>Добро пожаловать в наш интернет-магазин, посвященный страсти и волнению
+                    <InfoP>Добро пожаловать в наш интернет-магазин, посвященный страсти и волнению
                         мира Формулы 1! Мы - ваш
                         источник уникальной атрибутики и мерча, созданного специально для настоящих фанатов самого
-                        захватывающего мирового автоспорта.</p>
+                        захватывающего мирового автоспорта.</InfoP>
                     <List
                         heading={"Наш ассортимент включает в себя"}
                         content={[
@@ -39,43 +42,39 @@ const AboutUs = () => {
                             },
                         ]}
                     />
-                    <p className={classes.p}>
+                    <InfoP>
                         Мы гордимся тем, что предлагаем не только стильные и высококачественные товары, но и
                         создаем место, где фанаты могут находиться в окружении всего, что связано с их любимым
                         видом спорта. Покупайте с удовольствием и делитесь страстью к гонкам вместе с нами!
-                    </p>
+                    </InfoP>
                 </ContentFrame>
             </ContentDiv>
             <ContentDiv>
                 <h1>Партнеры: F1 Merch и Fueler Store</h1>
                 <ContentFrame>
-                    <img
-                        className={classes.logo}
+                    <InfoTitle>Fueler Store - Ваш путь к официальному мерчандайзу Формулы 1</InfoTitle>
+                    <InfoImage
                         src={"../logos/fueler.webp"}
                         alt={"fueler logo"}
                         style={{backgroundColor: "#000"}}
                     />
-                    <h3 className={classes.h}>Fueler Store - Ваш путь к официальному мерчандайзу Формулы 1</h3>
-                    <p className={classes.p}>
+                    <InfoP>
                         Мы гордимся тем, что являемся партнерами с F1 Merch - авторитетным и надежным поставщиком
                         официального мерчандайза Формулы 1. Сотрудничество с F1 Merch позволяет нам предлагать вам
                         только лицензированные и высококачественные товары, утвержденные самими командами и
                         организаторами чемпионата.
-                    </p>
-                    <img
-                        className={classes.logo}
+                    </InfoP>
+                    <InfoTitle style={{marginTop: "10px"}}>F1 Merch - Энергия Формулы 1 в каждом товаре</InfoTitle>
+                    <InfoImage
                         src={"../logos/f1merch.jpg"}
                         alt={"fueler logo"}
-                        style={{marginTop: "10px"}}
                     />
-                    <h3 className={classes.h}>F1 Merch - Энергия Формулы 1 в каждом товаре</h3>
-                    <p className={classes.p}>
+                    <InfoP>
                         Fueler Store - наш партнер, который разделяет с нами страсть к Формуле 1 и предлагает уникальные
                         товары, призванные передать энергию гонок. От стильных одежды до аксессуаров, созданных с
                         любовью к деталям - каждый продукт в Fueler Store несет в себе дух скорости и соперничества,
                         характерный для мира автоспорта.
-                    </p>
-
+                    </InfoP>
                     <List
                         heading={"Наши ценности в партнерстве"}
                         content={[
@@ -93,24 +92,23 @@ const AboutUs = () => {
                             },
                         ]}
                     />
-
-                    <p className={classes.p}>
+                    <InfoP>
                         Мы рады предоставить вам возможность наслаждаться атрибутикой Формулы 1 от лучших брендов, и
                         наше партнерство с F1 Merch и Fueler Store подчеркивает наше стремление предоставлять вам только
                         лучшие товары, соответствующие вашей страсти к автоспорту. Погрузитесь в мир гонок вместе с
                         нами!
-                    </p>
+                    </InfoP>
                 </ContentFrame>
             </ContentDiv>
             <ContentDiv>
                 <h1>Ваш Путь к Увлекательному Миру Формулы 1</h1>
                 <ContentFrame>
-                    <p className={classes.p}>
+                    <InfoP>
                         С нашей компанией вы не просто делаете покупки - вы вступаете в увлекательный мир гонок, окружая
                         себя стильной и качественной атрибутикой. Мы стремимся сделать ваш опыт покупок у нас
                         незабываемым и приятным, а каждая посылка - настоящим подарком для вас, наших преданных
                         клиентов.
-                    </p>
+                    </InfoP>
                     <List
                         heading={"Основные преимущества нашей компании"}
                         content={[
@@ -140,19 +138,25 @@ const AboutUs = () => {
                             },
                         ]}
                     />
-                    <p className={classes.p}>
+                    <InfoP>
                         Добро пожаловать в мир Формулы 1 с нами!
-                    </p>
+                    </InfoP>
                 </ContentFrame>
             </ContentDiv>
             <ContentDiv>
                 <h1>Где нас найти?</h1>
                 <ContentFrame>
-                    <iframe className={classes.map}
-                            src={"https://yandex.ru/map-widget/v1/?ll=37.480409%2C55.669986&z=16.8&l=skl&pt=37.480409,55.669986&mode=search&source=constructor"}/>
-                    <p className={classes.p}>
-                        Заходите в гости по адресу Проспект Вернадского 78! С нетерпиение ждем вас!
-                    </p>
+                    <YandexMapWidget
+                        ll={"37.480409,55.669986"}
+                        z={16.8}
+                        l={"skl"}
+                        pt={"37.480409,55.669986"}
+                        mode={"search"}
+                        title={"Наша фабрика"}
+                    />
+                    <InfoP>
+                        Заходите в гости по адресу Проспект Вернадского 78! С нетерпиением ждем вас!
+                    </InfoP>
                 </ContentFrame>
             </ContentDiv>
         </div>
