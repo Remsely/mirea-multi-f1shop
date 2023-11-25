@@ -49,3 +49,18 @@
     cursor: pointer;
     object-fit: contain;
 }
+
+@media (max-width: 485px) {
+    .card {
+        height: 400px;
+        width: calc(100% - 10px);
+        transition: 100ms;
+        text-align: center;
+    }
+
+    .image {
+        height: 320px;
+        width: 100%;
+        object-fit: contain;
+    }
+}

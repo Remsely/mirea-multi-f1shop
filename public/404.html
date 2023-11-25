@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <title>Мир Формулы 1</title>
     <script type="text/javascript">
-        var pathSegmentsToKeep = 1;
+        let pathSegmentsToKeep = 1;
 
-        var l = window.location;
+        let l = window.location;
         l.replace(
             l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
             l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
