@@ -15,7 +15,7 @@ const WishList = () => {
 
     return (
         <ContentDiv>
-            <h2>Избранное</h2>
+            <h1>Избранное</h1>
             <ProductsList
                 productList={wishList}
                 remove={removeProduct}
