@@ -1,10 +1,34 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import classes from "./NavBar.module.css";
-import {navBarItems} from "./navbarItems";
+import LocalStorage from "../../../util/localStorage";
+import {subscribeToEvent} from "../../../util/events";
 
 const NavBar = () => {
     const router = useNavigate()
+    const [cartItemCount, setCartItemCount] = useState(LocalStorage.getCartIDs().length);
+    const [wishlistItemsCount, setWishlistItemsCount] = useState(LocalStorage.getWishlistIDs().length);
+    const [navBarItems, setNavBarItems] = useState([]);
+
+    useEffect(() => {
+        const handleCartChange = () => {
+            setCartItemCount(LocalStorage.getCartIDs().length);
+        };
+
+        const handleWishlistChange = () => {
+            setWishlistItemsCount(LocalStorage.getWishlistIDs().length);
+        };
+
+        subscribeToEvent('cartChanged', handleCartChange);
+        subscribeToEvent('wishlistChanged', handleWishlistChange);
+
+        setNavBarItems([
+            {link: "/catalog", title: "Каталог", count: 0},
+            {link: "/wishlist", title: "Избранное", count: wishlistItemsCount},
+            {link: "/cart", title: "Корзина", count: cartItemCount},
+            {link: "/about", title: "О нас", count: 0},
+        ])
+    }, [cartItemCount, wishlistItemsCount]);
 
     return (
         <section className={classes.topNav}>
@@ -23,6 +47,13 @@ const NavBar = () => {
                         <Link className={classes.links} to={item.link}>
                             {item.title}
                         </Link>
+                        {item.count !== 0 &&
+                            <div className={classes.itemsCounter}>
+                                <div>
+                                    {item.count}
+                                </div>
+                            </div>
+                        }
                     </li>
                 )}
             </ul>

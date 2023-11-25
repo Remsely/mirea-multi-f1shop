@@ -64,9 +64,10 @@ html, body {
 }
 
 .menu > .menuLi {
-    margin: 0 1rem;
+    padding: 0 1rem;
     overflow: hidden;
     font-size: 1.1rem;
+    position: relative;
 }
 
 .menuButtonContainer {
@@ -119,6 +120,23 @@ html, body {
     transform: rotate(-405deg);
 }
 
+.itemsCounter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    font-size: 0.7rem;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+    position: absolute;
+    right: 1px;
+    top: 1px;
+}
+
 @media (max-width: 700px) {
     .menuButtonContainer {
         display: flex;
@@ -169,5 +187,14 @@ html, body {
         width: 100%;
         color: white;
         background-color: #fff;
+    }
+
+    .itemsCounter {
+        height: 24px;
+        width: 24px;
+        font-size: 1rem;
+        position: absolute;
+        right: 1px;
+        top: calc(50% - 12px);
     }
 }

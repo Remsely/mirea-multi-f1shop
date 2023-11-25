@@ -1,4 +1,5 @@
 import {dataBase} from "../API/dataBase";
+import {triggerEvent} from "./events";
 
 export default class LocalStorage {
     static addToCart(id) {
@@ -6,6 +7,7 @@ export default class LocalStorage {
         if (!this.isInCart(id)) {
             storedData.push({id: id, count: 1});
             localStorage.setItem("cart", JSON.stringify(storedData))
+            triggerEvent("cartChanged");
         }
     }
 
@@ -14,6 +16,7 @@ export default class LocalStorage {
         if (!storedData.includes(id)) {
             storedData.push(id);
             localStorage.setItem("wishlist", JSON.stringify(storedData))
+            triggerEvent("wishlistChanged");
         }
     }
 
@@ -21,12 +24,14 @@ export default class LocalStorage {
         const storedData = this.getCartIDs();
         const updatedData = storedData.filter(obj => obj.id !== id);
         localStorage.setItem("cart", JSON.stringify(updatedData));
+        triggerEvent("cartChanged");
     }
 
     static removeFromWishlist(id) {
         const storedData = this.getWishlistIDs();
         const updatedData = storedData.filter(storedId => storedId !== id);
         localStorage.setItem("wishlist", JSON.stringify(updatedData));
+        triggerEvent("wishlistChanged");
     }
 
     static findIdInCart(cartItems, id) {
@@ -87,5 +92,6 @@ export default class LocalStorage {
 
     static clearCart() {
         localStorage.removeItem("cart");
+        triggerEvent("cartChanged");
     }
 }
