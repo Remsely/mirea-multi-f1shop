@@ -38,14 +38,14 @@ const CartItem = ({item, remove, updateFullPrice}) => {
             <div className={classes.specifiesContainer}>
                 <div className={classes.nameAndDelContainer}>
                     <div className={classes.name}>{item.name}</div>
-                    <CartButton style={{border: "none"}} icon={"../icons/close.svg"} onClick={removeItem}/>
+                    <CartButton style={{border: "none"}} icon={"../F1Shop/icons/close.svg"} onClick={removeItem}/>
                 </div>
                 <div className={classes.priceAndCountContainer}>
                     <div className={classes.price}>{price + "₽"}</div>
                     <div className={classes.countContainer}>
-                        {count > 1 && <CartButton icon={"../icons/minus.svg"} onClick={minusCount}/>}
+                        {count > 1 && <CartButton icon={"../F1Shop/icons/minus.svg"} onClick={minusCount}/>}
                         <div className={classes.count}>{count}</div>
-                        <CartButton icon={"../icons/plus.svg"} onClick={plusCount}/>
+                        <CartButton icon={"../F1Shop/icons/plus.svg"} onClick={plusCount}/>
                     </div>
                 </div>
             </div>
