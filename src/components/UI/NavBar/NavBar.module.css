@@ -194,7 +194,7 @@ html, body {
         width: 24px;
         font-size: 1rem;
         position: absolute;
-        right: 1px;
+        right: 2px;
         top: calc(50% - 12px);
     }
 }
