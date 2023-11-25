@@ -25,13 +25,13 @@ const ProductCard = ({imgURL, name, price, id, remove}) => {
             {inWishlist
                 ? <img
                     className={classes.wishListIcon}
-                    src={"../icons/love-active.svg"}
+                    src={"../F1Shop/icons/love-active.svg"}
                     alt={"name"}
                     onClick={handleWishlistAction}
                 />
                 : <img
                     className={classes.wishListIcon}
-                    src={"../icons/love-inactive.svg"}
+                    src={"../F1Shop/icons/love-inactive.svg"}
                     alt={"name"}
                     onClick={handleWishlistAction}
                 />
