@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/F1Shop/static/css/main.bca5e976.css",
+    "main.js": "/F1Shop/static/js/main.f1fa08a5.js",
+    "index.html": "/F1Shop/index.html",
+    "main.bca5e976.css.map": "/F1Shop/static/css/main.bca5e976.css.map",
+    "main.f1fa08a5.js.map": "/F1Shop/static/js/main.f1fa08a5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bca5e976.css",
+    "static/js/main.f1fa08a5.js"
+  ]
+}
