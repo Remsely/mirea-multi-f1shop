@@ -40,7 +40,7 @@ const ProductInfo = ({product}) => {
                 </div>
                 <img
                     className={classes.wishListIcon}
-                    src={"../icons/close.svg"}
+                    src={"../F1Shop/icons/close.svg"}
                     alt={"name"}
                     onClick={() => router(-1)}
                 />
