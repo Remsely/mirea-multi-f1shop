@@ -1,10 +1,14 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ContentDiv from "../components/UI/contentDiv/ContentDiv";
 import LocalStorage from "../util/localStorage";
 import CartItemList from "../components/cartItemsList/CartItemList";
 import OrderForm from "../components/orderForm/OrderForm";
 
 const Cart = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     const cartItems = LocalStorage.setCartItems();
 
     const [cart, setCart] = useState(cartItems);

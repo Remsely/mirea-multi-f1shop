@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import MyInput from "../components/UI/input/MyInput";
 import {dataBase} from "../API/dataBase";
 import CategoriesCheckBoxes from "../components/UI/CategoriesCheckBoxes/CategoriesCheckBoxes";
@@ -12,6 +12,10 @@ const Catalog = () => {
     const [searchText, setSearchText] = useState('');
     const [selectedSort, setSelectedSort] = useState('');
     const [products, setProducts] = useState([...dataBase]);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const sortedProducts = useMemo(() => {
         if (selectedSort) {

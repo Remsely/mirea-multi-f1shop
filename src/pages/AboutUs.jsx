@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import ContentDiv from "../components/UI/contentDiv/ContentDiv";
 import ContentFrame from "../components/UI/contentFrame/ContentFrame";
 import List from "../components/UI/infoComponents/list/List";
@@ -8,6 +8,10 @@ import InfoImage from "../components/UI/infoComponents/infoImage/InfoImage";
 import YandexMapWidget from "../components/UI/yandexMapWidget/YandexMapWidget";
 
 const AboutUs = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <div>
             <ContentDiv>

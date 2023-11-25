@@ -19,7 +19,7 @@ const Footer = () => {
                         <div className={classes.footerCol}>
                             <h4>Компания</h4>
                             <ul>
-                                <li><a href={"/about"} target="_blank" rel="noreferrer">О Нас</a></li>
+                                <li><a href={"/F1Shop/about"} target="_blank" rel="noreferrer">О Нас</a></li>
                                 <li><a href={"https://merchf1.ru/"} target="_blank" rel="noreferrer">F1Merch</a></li>
                                 <li><a href={"https://fueler.store/collections/f1-2023-collection"} target="_blank"
                                        rel="noreferrer">Fueler Store</a></li>
