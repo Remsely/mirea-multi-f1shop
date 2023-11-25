@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/F1Shop/static/css/main.8bc99afb.css",
-    "main.js": "/F1Shop/static/js/main.36398c47.js",
+    "main.js": "/F1Shop/static/js/main.f1ff74b8.js",
     "index.html": "/F1Shop/index.html",
     "main.8bc99afb.css.map": "/F1Shop/static/css/main.8bc99afb.css.map",
-    "main.36398c47.js.map": "/F1Shop/static/js/main.36398c47.js.map"
+    "main.f1ff74b8.js.map": "/F1Shop/static/js/main.f1ff74b8.js.map"
   },
   "entrypoints": [
     "static/css/main.8bc99afb.css",
-    "static/js/main.36398c47.js"
+    "static/js/main.f1ff74b8.js"
   ]
 }
