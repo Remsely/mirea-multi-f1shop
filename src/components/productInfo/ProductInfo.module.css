@@ -51,13 +51,14 @@
     justify-content: center;
 }
 
-@media (max-width: 1165px) {
+@media (max-width: 1175px) {
     .img {
         max-width: 100%;
     }
 
     .descriptionContainer {
         max-width: 100%;
+        padding-top: 0;
     }
 }
 
