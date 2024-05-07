@@ -1,0 +1,3 @@
+security:
+  jwt:
+    secret-sey: verysecretkeydonttellanybodyimserious
