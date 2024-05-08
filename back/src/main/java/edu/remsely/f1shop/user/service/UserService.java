@@ -3,11 +3,11 @@ package edu.remsely.f1shop.user.service;
 import edu.remsely.f1shop.user.entity.User;
 
 public interface UserService {
-    User findByEmail(String email);
+    User findUserByEmail(String email);
 
-    User save(User user);
+    User addUser(User user);
 
-    User findById(Long id);
+    User findUserById(Long id);
 
-    boolean existByEmail(String email);
+    boolean userExistByEmail(String email);
 }

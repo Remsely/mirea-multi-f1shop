@@ -1,10 +1,7 @@
 package edu.remsely.f1shop.product.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "products")
@@ -20,12 +17,14 @@ public class Product {
     @Column(nullable = false)
     private String name;
 
+    @ToString.Exclude
     @Column(nullable = false)
     private String description;
 
     @Column(nullable = false)
     private Double price;
 
+    @ToString.Exclude
     @Column(nullable = false)
     private String image;
 

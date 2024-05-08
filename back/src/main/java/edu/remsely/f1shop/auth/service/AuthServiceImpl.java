@@ -27,7 +27,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public LoginResponse login(LoginRequest request) {
         final String email = request.getEmail();
-        if (userService.existByEmail(email)) {
+        if (userService.userExistByEmail(email)) {
             log.info("Login failed. No user found with email {}!", email);
             return LoginResponse.builder()
                     .authenticated(false)
@@ -38,7 +38,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public LoginResponse register(LoginRequest request) {
-        userService.save(User.builder()
+        userService.addUser(User.builder()
                 .email(request.getEmail())
                 .password(request.getPassword())
                 .build());
