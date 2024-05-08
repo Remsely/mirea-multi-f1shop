@@ -1,7 +1,7 @@
 package edu.remsely.f1shop.security.config;
 
-import edu.remsely.f1shop.security.principal.CustomUserDetailService;
 import edu.remsely.f1shop.security.jwt.JwtAuthenticationFilter;
+import edu.remsely.f1shop.security.principal.CustomUserDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class WebSecurityConfig {
-
     @Bean
     public SecurityFilterChain applicationSecurity(HttpSecurity http,
                                                    JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception {

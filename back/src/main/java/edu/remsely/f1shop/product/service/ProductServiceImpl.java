@@ -1,10 +1,12 @@
 package edu.remsely.f1shop.product.service;
 
 import edu.remsely.f1shop.product.dto.ProductDto;
+import edu.remsely.f1shop.product.entity.CartEntity;
 import edu.remsely.f1shop.product.entity.Product;
+import edu.remsely.f1shop.product.entity.UserAndProductPrimaryKey;
 import edu.remsely.f1shop.product.entity.WishlistEntity;
-import edu.remsely.f1shop.product.entity.WishlistEntityPrimaryKey;
 import edu.remsely.f1shop.product.mapper.ProductMapper;
+import edu.remsely.f1shop.product.repository.CartRepository;
 import edu.remsely.f1shop.product.repository.ProductRepository;
 import edu.remsely.f1shop.product.repository.WishlistRepository;
 import edu.remsely.f1shop.user.entity.User;
@@ -25,8 +27,10 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final WishlistRepository wishlistRepository;
     private final UserRepository userRepository;
+    private final CartRepository cartRepository;
     private final ProductMapper productMapper;
 
+    @Transactional
     @Override
     public Product addProduct(Product product) {
         Product newProduct = productRepository.save(product);
@@ -34,6 +38,7 @@ public class ProductServiceImpl implements ProductService {
         return newProduct;
     }
 
+    @Transactional
     @Override
     public Product updateProduct(Product product, long productId) {
         Product productToUpdate = findProduct(productId);
@@ -45,16 +50,20 @@ public class ProductServiceImpl implements ProductService {
         return productToUpdate;
     }
 
+    @Transactional(readOnly = true)
     @Override
     public ProductDto getProduct(long productId, long userId) {
         User user = findUser(userId);
         Product product = findProduct(productId);
-        Boolean inWishlist = isProductInWishlist(product, user);
+
+        boolean inWishlist = isProductInWishlist(product, user);
+        boolean inCart = isProductInCart(product, user);
 
         log.info("Product found. Product : {}", product);
-        return productMapper.toDto(product, inWishlist, false);
+        return productMapper.toDto(product, inWishlist, inCart);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<ProductDto> getAllProducts(long userId) {
         User user = findUser(userId);
@@ -94,7 +103,7 @@ public class ProductServiceImpl implements ProductService {
         User user = findUser(userId);
         Product product = findProduct(productId);
 
-        wishlistRepository.deleteById(WishlistEntityPrimaryKey.builder()
+        wishlistRepository.deleteById(UserAndProductPrimaryKey.builder()
                 .user(user)
                 .product(product)
                 .build()
@@ -109,9 +118,51 @@ public class ProductServiceImpl implements ProductService {
         User user = findUser(userId);
         List<Product> products = productRepository.findInWishlist(user);
 
+        log.info("User's with id {} wishlist found. List length : {}", userId, products.size());
         return products.stream()
                 .map(product -> productMapper.toDto(product, true, false)).
                 collect(Collectors.toList());
+    }
+
+    @Transactional
+    @Override
+    public CartEntity addProductToCart(long productId, int amount, long userId) {
+        User user = findUser(userId);
+        Product product = findProduct(productId);
+
+        checkProductAmount(product, amount);
+
+        CartEntity cartEntity = cartRepository.save(CartEntity.builder()
+                .user(user)
+                .product(product)
+                .amount(amount)
+                .build()
+        );
+        log.info("Product with id {} added to user's with id {} cart. Cart entity : {}", productId, userId, cartEntity);
+        return cartEntity;
+    }
+
+    @Transactional
+    @Override
+    public void removeProductFromCart(long productId, long userId) {
+        User user = findUser(userId);
+        Product product = findProduct(productId);
+
+        cartRepository.deleteById(UserAndProductPrimaryKey.builder()
+                .product(product)
+                .user(user)
+                .build()
+        );
+        log.info("Product with id {} removed from user's with id {} cart.", productId, userId);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<CartEntity> getProductsFromCart(long userId) {
+        User user = findUser(userId);
+        List<CartEntity> cartEntities = cartRepository.findByUser(user);
+        log.info("User's with id {} cart found. List length : {}", userId, cartEntities.size());
+        return cartEntities;
     }
 
     private void updateNonNullProperties(Product productToUpdate, Product product) {
@@ -131,8 +182,10 @@ public class ProductServiceImpl implements ProductService {
             productToUpdate.setAmount(product.getAmount());
     }
 
-    private Boolean isProductInWishlist(Product product, User user) {
-        return wishlistRepository.existsByProductAndUser(product, user);
+    private Set<Long> getWishlistProductsIds(List<WishlistEntity> wishlistProducts) {
+        return wishlistProducts.stream()
+                .map(wishlistEntity -> wishlistEntity.getProduct().getId())
+                .collect(Collectors.toSet());
     }
 
     private User findUser(long id) {
@@ -145,9 +198,16 @@ public class ProductServiceImpl implements ProductService {
                 .orElseThrow(() -> new RuntimeException("User not found!"));
     }
 
-    private Set<Long> getWishlistProductsIds(List<WishlistEntity> wishlistProducts) {
-        return wishlistProducts.stream()
-                .map(wishlistEntity -> wishlistEntity.getProduct().getId())
-                .collect(Collectors.toSet());
+    private void checkProductAmount(Product product, int amount) {
+        if (product.getAmount() - amount < 0)
+            throw new RuntimeException("No enough product amount!");
+    }
+
+    private Boolean isProductInWishlist(Product product, User user) {
+        return wishlistRepository.existsByProductAndUser(product, user);
+    }
+
+    private Boolean isProductInCart(Product product, User user) {
+        return cartRepository.existsByProductAndUser(product, user);
     }
 }

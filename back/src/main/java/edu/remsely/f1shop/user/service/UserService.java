@@ -7,7 +7,5 @@ public interface UserService {
 
     User addUser(User user);
 
-    User findUserById(Long id);
-
     boolean userExistByEmail(String email);
 }

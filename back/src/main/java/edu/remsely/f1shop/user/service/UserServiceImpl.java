@@ -26,6 +26,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Transactional
+    @Override
     public User addUser(User user) {
         user.setRole(UserRole.USER);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -35,13 +36,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Transactional(readOnly = true)
-    public User findUserById(Long id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
-        log.info("User found by id successful. User {}", user);
-        return user;
-    }
-
-    @Transactional(readOnly = true)
+    @Override
     public boolean userExistByEmail(String email) {
         boolean exists = userRepository.existsByEmailIgnoreCase(email);
         log.info("User existence by email {} has been checked. existence : {} ", email, exists);
