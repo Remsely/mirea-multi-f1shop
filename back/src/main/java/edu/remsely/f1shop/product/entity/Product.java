@@ -25,7 +25,7 @@ public class Product {
     private Double price;
 
     @ToString.Exclude
-    @Column(nullable = false)
+    @Column(name = "image_link", nullable = false)
     private String image;
 
     @Column(nullable = false)
