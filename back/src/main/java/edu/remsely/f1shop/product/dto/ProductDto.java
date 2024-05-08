@@ -12,4 +12,5 @@ public class ProductDto {
     private String image;
     private Double price;
     private Boolean inWishlist;
+    private Boolean inCart;
 }
