@@ -1,5 +1,7 @@
-package edu.remsely.f1shop.security;
+package edu.remsely.f1shop.security.config;
 
+import edu.remsely.f1shop.security.principal.CustomUserDetailService;
+import edu.remsely.f1shop.security.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,6 +35,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(registry -> registry
                         .requestMatchers("/").permitAll()
                         .requestMatchers("auth/login").permitAll()
+                        .requestMatchers("auth/register").permitAll()
                         .anyRequest().authenticated()
                 );
         return http.build();

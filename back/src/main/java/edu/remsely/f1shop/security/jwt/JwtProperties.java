@@ -1,4 +1,4 @@
-package edu.remsely.f1shop.security;
+package edu.remsely.f1shop.security.jwt;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,9 +1,6 @@
-package edu.remsely.f1shop.security;
+package edu.remsely.f1shop.security.principal;
 
 import org.springframework.security.authentication.AbstractAuthenticationToken;
-import org.springframework.security.core.GrantedAuthority;
-
-import java.util.Collection;
 
 public class UserPrincipalAuthenticationToken extends AbstractAuthenticationToken {
     private final UserPrincipal principal;

@@ -1,4 +1,4 @@
-package edu.remsely.f1shop.model;
+package edu.remsely.f1shop.auth.dto;
 
 import lombok.Builder;
 import lombok.Getter;

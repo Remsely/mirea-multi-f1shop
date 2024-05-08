@@ -1,6 +1,7 @@
-package edu.remsely.f1shop.security;
+package edu.remsely.f1shop.security.mapper;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
+import edu.remsely.f1shop.security.principal.UserPrincipal;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 

@@ -1,3 +1,15 @@
 security:
   jwt:
     secret-sey: verysecretkeydonttellanybodyimserious
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/f1shop
+    username: test
+    password: test
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

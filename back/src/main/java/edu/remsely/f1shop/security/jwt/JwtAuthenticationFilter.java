@@ -1,5 +1,7 @@
-package edu.remsely.f1shop.security;
+package edu.remsely.f1shop.security.jwt;
 
+import edu.remsely.f1shop.security.mapper.JwtToPrincipalConverter;
+import edu.remsely.f1shop.security.principal.UserPrincipalAuthenticationToken;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

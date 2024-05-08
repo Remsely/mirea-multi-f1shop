@@ -1,6 +1,6 @@
 package edu.remsely.f1shop.controller;
 
-import edu.remsely.f1shop.security.UserPrincipal;
+import edu.remsely.f1shop.security.principal.UserPrincipal;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;

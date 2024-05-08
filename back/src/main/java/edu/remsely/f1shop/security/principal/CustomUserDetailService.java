@@ -1,6 +1,6 @@
-package edu.remsely.f1shop.security;
+package edu.remsely.f1shop.security.principal;
 
-import edu.remsely.f1shop.user.UserService;
+import edu.remsely.f1shop.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,11 +17,11 @@ public class CustomUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        var user = userService.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException(username));
+        var user = userService.findByEmail(username);
         return UserPrincipal.builder()
                 .userId(user.getId())
                 .email(user.getEmail())
-                .authorities(List.of(new SimpleGrantedAuthority(user.getRole())))
+                .authorities(List.of(new SimpleGrantedAuthority(user.getRole().toString())))
                 .password(user.getPassword())
                 .build();
     }
