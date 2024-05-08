@@ -13,14 +13,17 @@ CREATE TABLE IF NOT EXISTS products
     description VARCHAR(2000) NOT NULL,
     image_link  VARCHAR(1000) NOT NULL,
     price       REAL          NOT NULL,
-    count       INTEGER       NOT NULL
+    amount      INTEGER       NOT NULL,
+    CONSTRAINT POSITIVE_PRODUCT_AMOUNT CHECK (amount >= 0),
+    CONSTRAINT POSITIVE_PRODUCT_PRICE CHECK (price > 0)
 );
 
 CREATE TABLE IF NOT EXISTS cart_products
 (
     user_id    BIGINT REFERENCES users (id)    NOT NULL,
     product_id BIGINT REFERENCES products (id) NOT NULL,
-    count      INTEGER                         NOT NULL
+    amount     INTEGER                         NOT NULL,
+    CONSTRAINT POSITIVE_CART_PRODUCT_AMOUNT CHECK (amount >= 0)
 );
 
 CREATE TABLE IF NOT EXISTS wishlist_products
@@ -40,5 +43,6 @@ CREATE TABLE IF NOT EXISTS order_products
 (
     order_id   BIGINT REFERENCES orders (id)   NOT NULL,
     product_id BIGINT REFERENCES products (id) NOT NULL,
-    count      INTEGER                         NOT NULL
+    amount     INTEGER                         NOT NULL,
+    CONSTRAINT POSITIVE_ORDER_PRODUCT_AMOUNT CHECK (amount >= 0)
 );
