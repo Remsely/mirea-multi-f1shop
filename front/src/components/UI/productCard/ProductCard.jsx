@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import classes from "./ProductCard.module.css";
 import {useNavigate} from "react-router-dom";
 import LocalStorage from "../../../util/localStorage";
-import ProductService from "../../../API/ProductService";
+import ProductService from "../../../api/ProductService";
 
 const ProductCard = ({imgURL, name, price, id, remove}) => {
     const product = ProductService.getProductByID(id);

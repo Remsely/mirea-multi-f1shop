@@ -1,4 +1,4 @@
-import {dataBase} from "../API/dataBase";
+import {dataBase} from "../api/dataBase";
 import {triggerEvent} from "./events";
 
 export default class LocalStorage {

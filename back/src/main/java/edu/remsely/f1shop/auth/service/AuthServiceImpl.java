@@ -30,7 +30,7 @@ public class AuthServiceImpl implements AuthService {
         if (!userService.userExistByEmail(email)) {
             log.info("Login failed. No user found with email {}!", email);
             return LoginResponse.builder()
-                    .authenticated(false)
+                    .accessToken(null)
                     .build();
         }
         return getToken(request);
@@ -61,7 +61,6 @@ public class AuthServiceImpl implements AuthService {
         log.info("Login successful. User email : {}.", request.getEmail());
         return LoginResponse.builder()
                 .accessToken(token)
-                .authenticated(true)
                 .build();
     }
 }
