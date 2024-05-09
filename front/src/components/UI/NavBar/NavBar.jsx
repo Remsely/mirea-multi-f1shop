@@ -27,6 +27,7 @@ const NavBar = () => {
             {link: "/wishlist", title: "Избранное", count: wishlistItemsCount},
             {link: "/cart", title: "Корзина", count: cartItemCount},
             {link: "/about", title: "О нас", count: 0},
+            {link: "/profile", title: "Профиль", count: 0}
         ])
     }, [cartItemCount, wishlistItemsCount]);
 
