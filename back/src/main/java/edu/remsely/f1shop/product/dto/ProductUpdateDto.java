@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 @Builder
 public class ProductUpdateDto {
+    private String category;
     private String name;
     private String description;
     private String image;

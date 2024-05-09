@@ -15,6 +15,7 @@ public class ProductMapper {
     public Product toEntity(ProductCreationDto dto) {
         return Product.builder()
                 .id(dto.getId())
+                .category(dto.getCategory())
                 .name(dto.getName())
                 .description(dto.getDescription())
                 .image(dto.getImage())
@@ -25,6 +26,7 @@ public class ProductMapper {
 
     public Product toEntity(ProductUpdateDto dto) {
         return Product.builder()
+                .category(dto.getCategory())
                 .name(dto.getName())
                 .description(dto.getDescription())
                 .image(dto.getImage())
@@ -36,6 +38,7 @@ public class ProductMapper {
     public ProductDto toDto(Product product, boolean inWishlist, boolean inCart) {
         return ProductDto.builder()
                 .id(product.getId())
+                .category(product.getCategory())
                 .name(product.getName())
                 .description(product.getDescription())
                 .image(product.getImage())
@@ -58,6 +61,7 @@ public class ProductMapper {
     public ProductCreationDto toDto(Product product) {
         return ProductCreationDto.builder()
                 .id(product.getId())
+                .category(product.getCategory())
                 .name(product.getName())
                 .description(product.getDescription())
                 .image(product.getImage())

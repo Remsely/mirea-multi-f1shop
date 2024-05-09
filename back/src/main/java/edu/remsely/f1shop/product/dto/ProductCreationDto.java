@@ -14,6 +14,9 @@ public class ProductCreationDto {
     private Long id;
 
     @NotNull
+    private String category;
+
+    @NotNull
     private String name;
 
     @NotEmpty

@@ -7,6 +7,7 @@ import lombok.Data;
 @Builder
 public class ProductDto {
     private Long id;
+    private String category;
     private String name;
     private String description;
     private String image;

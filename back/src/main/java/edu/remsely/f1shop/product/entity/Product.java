@@ -15,6 +15,9 @@ public class Product {
     private Long id;
 
     @Column(nullable = false)
+    private String category;
+
+    @Column(nullable = false)
     private String name;
 
     @ToString.Exclude
