@@ -1,6 +1,6 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import MyInput from "../components/UI/input/MyInput";
-import {dataBase} from "../api/dataBase";
+import {dataBase} from "../service/dataBase";
 import CategoriesCheckBoxes from "../components/UI/CategoriesCheckBoxes/CategoriesCheckBoxes";
 import {categoriesList} from "../components/UI/CategoriesCheckBoxes/categoriesList";
 import MySelect from "../components/UI/select/MySelect";

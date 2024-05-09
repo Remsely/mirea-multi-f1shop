@@ -2,14 +2,27 @@ import './styles/App.css';
 import AppRouter from "./components/AppRouter";
 import NavBar from "./components/UI/NavBar/NavBar";
 import Footer from "./components/UI/footer/Footer";
+import {AuthContext} from "./context";
+import {useState} from "react";
+import AuthService from "./service/AuthService";
 
 function App() {
+    const [isAuth, setIsAuth] = useState(() => {
+        const token = AuthService.getToken();
+        return token !== null && token !== undefined
+    });
+
     return (
-        <div className="App">
-            <NavBar/>
-            <AppRouter/>
-            <Footer/>
-        </div>
+        <AuthContext.Provider value={{
+            isAuth,
+            setIsAuth
+        }}>
+            <div className="App">
+                <NavBar/>
+                <AppRouter/>
+                <Footer/>
+            </div>
+        </AuthContext.Provider>
     );
 }
 

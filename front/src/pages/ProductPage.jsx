@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useParams} from "react-router-dom";
-import ProductService from "../api/ProductService";
+import ProductService from "../service/ProductService";
 import ContentDiv from "../components/UI/contentDiv/ContentDiv";
 import ProductInfo from "../components/productInfo/ProductInfo";
 
