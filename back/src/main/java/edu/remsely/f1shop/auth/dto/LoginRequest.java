@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Builder
@@ -13,6 +14,7 @@ public class LoginRequest {
     @Email
     private String email;
 
+    @ToString.Exclude
     @NotEmpty
     private String password;
 }

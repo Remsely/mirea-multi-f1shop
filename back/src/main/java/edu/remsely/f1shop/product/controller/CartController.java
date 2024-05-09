@@ -1,6 +1,6 @@
 package edu.remsely.f1shop.product.controller;
 
-import edu.remsely.f1shop.product.dto.CartProductDto;
+import edu.remsely.f1shop.order.dto.OrderProductDto;
 import edu.remsely.f1shop.product.mapper.ProductMapper;
 import edu.remsely.f1shop.product.service.ProductService;
 import edu.remsely.f1shop.security.principal.UserPrincipal;
@@ -20,9 +20,9 @@ public class CartController {
     private final ProductMapper productMapper;
 
     @PutMapping("/{productId}/cart")
-    public CartProductDto addCartProduct(@PathVariable long productId,
-                                         @RequestParam Integer amount,
-                                         @AuthenticationPrincipal UserPrincipal user) {
+    public OrderProductDto addCartProduct(@PathVariable long productId,
+                                          @RequestParam Integer amount,
+                                          @AuthenticationPrincipal UserPrincipal user) {
         long userId = user.getUserId();
         log.info("/products/{}/cart?amount={} PUT. User id : {}", productId, amount, userId);
         return productMapper.toDto(productService.addProductToCart(productId, amount, userId));
@@ -36,7 +36,7 @@ public class CartController {
     }
 
     @GetMapping("/cart")
-    public List<CartProductDto> getCartProducts(@AuthenticationPrincipal UserPrincipal user) {
+    public List<OrderProductDto> getCartProducts(@AuthenticationPrincipal UserPrincipal user) {
         long userId = user.getUserId();
         log.info("/products/cart GET. User id : {}", userId);
         return productMapper.toDtoList(productService.getProductsFromCart(userId));

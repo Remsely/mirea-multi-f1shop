@@ -1,6 +1,6 @@
 package edu.remsely.f1shop.product.mapper;
 
-import edu.remsely.f1shop.product.dto.CartProductDto;
+import edu.remsely.f1shop.order.dto.OrderProductDto;
 import edu.remsely.f1shop.product.dto.ProductCreationDto;
 import edu.remsely.f1shop.product.dto.ProductDto;
 import edu.remsely.f1shop.product.dto.ProductUpdateDto;
@@ -45,8 +45,8 @@ public class ProductMapper {
                 .build();
     }
 
-    public CartProductDto toDto(CartEntity cartEntity) {
-        return CartProductDto.builder()
+    public OrderProductDto toDto(CartEntity cartEntity) {
+        return OrderProductDto.builder()
                 .id(cartEntity.getProduct().getId())
                 .name(cartEntity.getProduct().getName())
                 .image(cartEntity.getProduct().getImage())
@@ -66,7 +66,7 @@ public class ProductMapper {
                 .build();
     }
 
-    public List<CartProductDto> toDtoList(List<CartEntity> cartEntityList) {
+    public List<OrderProductDto> toDtoList(List<CartEntity> cartEntityList) {
         return cartEntityList.stream()
                 .map(this::toDto)
                 .toList();
