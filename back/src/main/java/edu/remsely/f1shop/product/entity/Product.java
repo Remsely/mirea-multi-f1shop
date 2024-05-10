@@ -21,7 +21,7 @@ public class Product {
     private String name;
 
     @ToString.Exclude
-    @Column(nullable = false)
+    @Column(nullable = false, length = 3000)
     private String description;
 
     @Column(nullable = false)
