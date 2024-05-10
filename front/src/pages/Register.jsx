@@ -25,10 +25,14 @@ const Register = () => {
             const response = await AuthService.register(userEmail, userPassword);
             if (response.status === 200) {
                 setIsAuth(true);
+                router(`/catalog`)
+            } else {
+                setIsAuth(false);
+                alert("Такой пользователь уже зарегестрирован!")
             }
-            router(`/catalog`)
         } catch (error) {
             console.error(error);
+            alert("Ошибка регистрации!")
         }
     }
 

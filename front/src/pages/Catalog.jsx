@@ -1,20 +1,28 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import MyInput from "../components/UI/input/MyInput";
-import {dataBase} from "../service/dataBase";
 import CategoriesCheckBoxes from "../components/UI/CategoriesCheckBoxes/CategoriesCheckBoxes";
 import {categoriesList} from "../components/UI/CategoriesCheckBoxes/categoriesList";
 import MySelect from "../components/UI/select/MySelect";
 import ProductsList from "../components/productList/ProductsList";
 import ContentDiv from "../components/UI/contentDiv/ContentDiv";
+import ProductService from "../service/ProductService";
+import CenteredDiv from "../components/UI/alignCenterDiv/CenteredDiv";
+import {CircularProgress} from "@mui/material";
+import {useFetching} from "../hooks/useFetching";
 
 const Catalog = () => {
     const [selectedCategories, setSelectedCategories] = useState(categoriesList);
     const [searchText, setSearchText] = useState('');
     const [selectedSort, setSelectedSort] = useState('');
-    const [products, setProducts] = useState([...dataBase]);
+    const [products, setProducts] = useState([]);
+    const [fetchProducts, isLoading, error] = useFetching(async () => {
+        const gottenProducts = await ProductService.getProducts();
+        setProducts(gottenProducts);
+    });
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        fetchProducts();
     }, []);
 
     const sortedProducts = useMemo(() => {
@@ -57,10 +65,19 @@ const Catalog = () => {
                     {value: 'dec', name: 'По убыванию цены'},
                 ]}
             />
-            <ProductsList
-                productList={sortedAndSearchedAndFilteredProducts}
-                remove={() => setProducts(products)}
-            />
+            {error &&
+                <h2>Ошибка при загрузке каталога: {error}</h2>
+            }
+            {isLoading
+                ?
+                <CenteredDiv>
+                    <CircularProgress style={{color: 'black'}}/>
+                </CenteredDiv>
+                : <ProductsList
+                    productList={sortedAndSearchedAndFilteredProducts}
+                    remove={() => setProducts(products)}
+                />
+            }
         </ContentDiv>
     );
 };

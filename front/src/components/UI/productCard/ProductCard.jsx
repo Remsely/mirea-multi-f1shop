@@ -2,10 +2,8 @@ import React, {useState} from 'react';
 import classes from "./ProductCard.module.css";
 import {useNavigate} from "react-router-dom";
 import LocalStorage from "../../../util/localStorage";
-import ProductService from "../../../service/ProductService";
 
-const ProductCard = ({imgURL, name, price, id, remove}) => {
-    const product = ProductService.getProductByID(id);
+const ProductCard = ({product, remove}) => {
     const [inWishlist, setInWishlist] = useState(LocalStorage.isInWishlist(product.id));
     const router = useNavigate()
 
@@ -21,7 +19,7 @@ const ProductCard = ({imgURL, name, price, id, remove}) => {
     }
 
     return (
-        <div className={classes.card} onClick={() => router(`/catalog/${id}`)}>
+        <div className={classes.card} onClick={() => router(`/catalog/${product.id}`)}>
             {inWishlist
                 ? <img
                     className={classes.wishListIcon}
@@ -36,9 +34,9 @@ const ProductCard = ({imgURL, name, price, id, remove}) => {
                     onClick={handleWishlistAction}
                 />
             }
-            <img className={classes.image} src={imgURL} alt={name}/>
-            <div className={classes.name}>{name}</div>
-            <div className={classes.price}> {price}</div>
+            <img className={classes.image} src={product.image} alt={product.name}/>
+            <div className={classes.name}>{product.name}</div>
+            <div className={classes.price}> {product.price + "₽"}</div>
         </div>
     );
 };

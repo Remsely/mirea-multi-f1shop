@@ -1,6 +1,6 @@
 import {dataBase} from "./dataBase";
 import axios from "axios";
-import AuthService from "./AuthService";
+import AuthService from "../AuthService";
 
 export const getAllProducts = () => {
 

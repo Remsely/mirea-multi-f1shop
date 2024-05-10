@@ -5,7 +5,6 @@ import Footer from "./components/UI/footer/Footer";
 import {AuthContext} from "./context";
 import {useState} from "react";
 import AuthService from "./service/AuthService";
-import {getAllProducts} from "./service/databaseElements";
 import axios from "axios";
 
 axios.defaults.baseURL = "http://localhost:8080/";
@@ -15,8 +14,6 @@ function App() {
         const token = AuthService.getToken();
         return token !== null && token !== undefined
     });
-
-    // getAllProducts();
 
     return (
         <AuthContext.Provider value={{

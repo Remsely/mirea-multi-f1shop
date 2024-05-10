@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {dataBase} from "../service/dataBase";
+import {dataBase} from "../service/db_init/dataBase";
 import LocalStorage from "../util/localStorage";
 import ContentDiv from "../components/UI/contentDiv/ContentDiv";
 import ProductsList from "../components/productList/ProductsList";

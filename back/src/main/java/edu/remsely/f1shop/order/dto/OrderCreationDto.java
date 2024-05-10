@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 public class OrderCreationDto {
+    private Long id;
+
     @NotNull
     private LocalDateTime date;
 

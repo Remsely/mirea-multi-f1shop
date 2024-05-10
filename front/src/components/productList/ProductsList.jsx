@@ -9,10 +9,7 @@ const ProductsList = ({productList, remove}) => {
                 ? <div className={classes.productList}>
                     {productList.map(product =>
                         <ProductCard
-                            imgURL={product.image}
-                            name={product.name}
-                            price={product.price + "₽"}
-                            id={product.id}
+                            product={product}
                             key={product.id}
                             remove={remove}
                         />

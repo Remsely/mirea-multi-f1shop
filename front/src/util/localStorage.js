@@ -1,4 +1,4 @@
-import {dataBase} from "../service/dataBase";
+import {dataBase} from "../service/db_init/dataBase";
 import {triggerEvent} from "./events";
 
 export default class LocalStorage {
