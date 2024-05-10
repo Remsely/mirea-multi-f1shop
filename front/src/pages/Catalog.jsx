@@ -65,18 +65,16 @@ const Catalog = () => {
                     {value: 'dec', name: 'По убыванию цены'},
                 ]}
             />
-            {error &&
-                <h2>Ошибка при загрузке каталога: {error}</h2>
-            }
             {isLoading
-                ?
-                <CenteredDiv>
+                ? <CenteredDiv>
                     <CircularProgress style={{color: 'black'}}/>
                 </CenteredDiv>
-                : <ProductsList
-                    productList={sortedAndSearchedAndFilteredProducts}
-                    remove={() => setProducts(products)}
-                />
+                : error
+                    ? <h2>Ошибка при загрузке каталога: {error}</h2>
+                    : <ProductsList
+                        productList={sortedAndSearchedAndFilteredProducts}
+                        remove={() => setProducts(products)}
+                    />
             }
         </ContentDiv>
     );

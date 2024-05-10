@@ -137,7 +137,7 @@ html, body {
     top: 1px;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
     .menuButtonContainer {
         display: flex;
     }

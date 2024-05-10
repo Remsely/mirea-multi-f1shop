@@ -1,35 +1,33 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import classes from "./NavBar.module.css";
 import LocalStorage from "../../../util/localStorage";
 import {subscribeToEvent} from "../../../util/events";
+import {WishlistContext} from "../../../context";
 
 const NavBar = () => {
     const router = useNavigate()
     const [cartItemCount, setCartItemCount] = useState(LocalStorage.getCartIDs().length);
-    const [wishlistItemsCount, setWishlistItemsCount] = useState(LocalStorage.getWishlistIDs().length);
     const [navBarItems, setNavBarItems] = useState([]);
+
+    const {wishlistSize} = useContext(WishlistContext);
 
     useEffect(() => {
         const handleCartChange = () => {
             setCartItemCount(LocalStorage.getCartIDs().length);
         };
 
-        const handleWishlistChange = () => {
-            setWishlistItemsCount(LocalStorage.getWishlistIDs().length);
-        };
-
         subscribeToEvent('cartChanged', handleCartChange);
-        subscribeToEvent('wishlistChanged', handleWishlistChange);
 
         setNavBarItems([
             {link: "/catalog", title: "Каталог", count: 0},
-            {link: "/wishlist", title: "Избранное", count: wishlistItemsCount},
+            {link: "/wishlist", title: "Избранное", count: wishlistSize},
             {link: "/cart", title: "Корзина", count: cartItemCount},
             {link: "/about", title: "О нас", count: 0},
             {link: "/profile", title: "Профиль", count: 0}
         ])
-    }, [cartItemCount, wishlistItemsCount]);
+        console.log(":bpafpasdfa")
+    }, [cartItemCount, wishlistSize]);
 
     return (
         <section className={classes.topNav}>
@@ -48,7 +46,7 @@ const NavBar = () => {
                         <Link className={classes.links} to={item.link}>
                             {item.title}
                         </Link>
-                        {item.count !== 0 &&
+                        {item.count !== 0 && item.count &&
                             <div className={classes.itemsCounter}>
                                 <div>
                                     {item.count}

@@ -22,8 +22,7 @@ const ProductPage = () => {
 
     return (
         <div>
-
-            {isLoading
+            {isLoading || !product
                 ? <CenteredDiv>
                     <CircularProgress style={{color: 'black'}}/>
                 </CenteredDiv>
@@ -31,7 +30,10 @@ const ProductPage = () => {
                     <h2>Ошибка при загрузке товара: {error}</h2>
                     : <ContentDiv>
                         <h2>{product.name}</h2>
-                        <ProductInfo product={product}/>
+                        <ProductInfo
+                            product={product}
+                            setProduct={setProduct}
+                        />
                     </ContentDiv>
             }
         </div>

@@ -18,14 +18,14 @@ public class WishlistController {
     private final ProductService productService;
 
     @PutMapping("/{productId}/wishlist")
-    public ProductDto addInWishlist(@PathVariable long productId, @AuthenticationPrincipal UserPrincipal user) {
+    public ProductDto addToWishlist(@PathVariable long productId, @AuthenticationPrincipal UserPrincipal user) {
         long userId = user.getUserId();
         log.info("/products/{}/wishlist PUT. User id : {}", productId, userId);
         return productService.addProductToWishlist(productId, userId);
     }
 
     @DeleteMapping("/{productId}/wishlist")
-    public ProductDto deleteFromWishlist(@PathVariable long productId, @AuthenticationPrincipal UserPrincipal user) {
+    public ProductDto removeFromWishlist(@PathVariable long productId, @AuthenticationPrincipal UserPrincipal user) {
         long userId = user.getUserId();
         log.info("/products/{}/wishlist DELETE. User id : {}", productId, userId);
         return productService.removeProductFromWishlist(productId, userId);

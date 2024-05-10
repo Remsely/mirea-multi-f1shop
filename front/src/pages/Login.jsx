@@ -11,7 +11,7 @@ const Login = () => {
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const {setIsAuth} = useContext(AuthContext);
-    const router = useNavigate()
+    const router = useNavigate();
 
     const login = async (e) => {
         e.preventDefault()
