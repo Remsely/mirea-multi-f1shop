@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import ContentDiv from "../components/UI/contentDiv/ContentDiv";
 import CartItemList from "../components/cartItemsList/CartItemList";
 import OrderForm from "../components/orderForm/OrderForm";
@@ -6,9 +6,11 @@ import {useFetching} from "../hooks/useFetching";
 import CartService from "../service/CartService";
 import {CircularProgress} from "@mui/material";
 import CenteredDiv from "../components/UI/alignCenterDiv/CenteredDiv";
+import {CartContext} from "../context";
 
 const Cart = () => {
     const [cart, setCart] = useState([]);
+    const {setCartSize} = useContext(CartContext);
 
     const [fetchCart, isLoading, error] = useFetching(async () => {
         const cartItems = await CartService.getCart();
@@ -21,7 +23,8 @@ const Cart = () => {
     }, []);
 
     const clearCart = () => {
-        setCart([])
+        setCart([]);
+        setCartSize(0);
     }
 
     return (
