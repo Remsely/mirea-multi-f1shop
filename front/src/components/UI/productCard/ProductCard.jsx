@@ -1,17 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import classes from "./ProductCard.module.css";
 import {useNavigate} from "react-router-dom";
 import {CircularProgress} from "@mui/material";
 import {useWishlist} from "../../../hooks/useWishlist";
 
 const ProductCard = ({product, remove}) => {
+    const [productInstance, setProductInstance] = useState(product);
     const router = useNavigate()
     const {
-        productInstance,
         inWishlist,
         addToWishlistFetching: [addToWishlist, isWishlistAdditionLoading],
         removeFromWishlistFetching: [removeFromWishlist, isWishlistRemovalLoading]
-    } = useWishlist(product);
+    } = useWishlist(product, setProductInstance);
 
     function handleWishlistAction(e) {
         e.stopPropagation()

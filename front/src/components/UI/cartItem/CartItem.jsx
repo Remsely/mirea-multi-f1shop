@@ -1,51 +1,85 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import classes from "./CartItem.module.css";
 import CartButton from "../buttons/cartButtons/CartButton";
-import LocalStorage from "../../../util/localStorage";
 import {useNavigate} from "react-router-dom";
+import CartService from "../../../service/CartService";
+import {CartContext} from "../../../context";
+import {useFetching} from "../../../hooks/useFetching";
+import {CircularProgress} from "@mui/material";
 
-const CartItem = ({item, remove, updateFullPrice}) => {
-    const router = useNavigate()
-    const [count, setCount] = useState(item.count);
-    const [price, setPrice] = useState(item.price * item.count);
+const CartItem = ({item, remove, updateCart}) => {
+    const [itemInstance, setItemInstance] = useState(item);
+    const router = useNavigate();
+    const {cartSize, setCartSize} = useContext(CartContext);
 
-    function removeItem(e) {
-        e.stopPropagation();
-        LocalStorage.removeFromCart(item.id);
-        remove(item);
-        updateFullPrice();
-    }
+    const [plusItem, isItemPlusLoading] = useFetching(async () => {
+        let cartItemInstance = await CartService.addToCartInCart(itemInstance.id, itemInstance.amount + 1);
+        setItemInstance(cartItemInstance);
+        updateCart(cartItemInstance);
+    })
+
+    const [minusItem, isItemMinusLoading] = useFetching(async () => {
+        let cartItemInstance = await CartService.addToCartInCart(itemInstance.id, itemInstance.amount - 1);
+        setItemInstance(cartItemInstance);
+        updateCart(cartItemInstance);
+    })
+
+    const [deleteItem, isItemDeletionLoading] = useFetching(async () => {
+        await CartService.removeFromCart(itemInstance.id,);
+        remove(itemInstance);
+        setCartSize(cartSize - 1);
+    })
 
     function minusCount(e) {
         e.stopPropagation();
-        setCount(count - 1);
-        LocalStorage.decreaseInCart(item.id);
-        setPrice(price - item.price);
-        updateFullPrice();
+        minusItem();
     }
 
     function plusCount(e) {
         e.stopPropagation();
-        setCount(count + 1);
-        LocalStorage.increaseInCart(item.id);
-        setPrice(price + item.price);
-        updateFullPrice();
+        plusItem();
+    }
+
+    function removeItem(e) {
+        e.stopPropagation();
+        deleteItem();
     }
 
     return (
-        <div className={classes.container} onClick={() => router(`/catalog/${item.id}`)}>
-            <img className={classes.img} src={item.image} alt={item.name}/>
+        <div className={classes.container} onClick={() => router(`/catalog/${itemInstance.id}`)}>
+            <img className={classes.img}
+                 src={itemInstance.image}
+                 alt={itemInstance.name}
+            />
             <div className={classes.specifiesContainer}>
                 <div className={classes.nameAndDelContainer}>
-                    <div className={classes.name}>{item.name}</div>
-                    <CartButton style={{border: "none"}} icon={"../F1Shop/icons/close.svg"} onClick={removeItem}/>
+                    <div className={classes.name}>{itemInstance.name}</div>
+                    {isItemDeletionLoading
+                        ? <CircularProgress style={{color: 'black'}} size={30}/>
+                        : <CartButton
+                            style={{border: "none"}}
+                            icon={"../F1Shop/icons/close.svg"}
+                            onClick={removeItem}
+                        />
+                    }
                 </div>
                 <div className={classes.priceAndCountContainer}>
-                    <div className={classes.price}>{price + "₽"}</div>
+                    <div className={classes.price}>{(itemInstance.price * itemInstance.amount) + "₽"}</div>
                     <div className={classes.countContainer}>
-                        {count > 1 && <CartButton icon={"../F1Shop/icons/minus.svg"} onClick={minusCount}/>}
-                        <div className={classes.count}>{count}</div>
-                        <CartButton icon={"../F1Shop/icons/plus.svg"} onClick={plusCount}/>
+                        {itemInstance.amount > 1 &&
+                        isItemMinusLoading
+                            ? <CircularProgress style={{color: 'black'}} size={3}/>
+                            :
+                            <CartButton
+                                icon={"../F1Shop/icons/minus.svg"}
+                                onClick={minusCount}
+                            />
+                        }
+                        <div className={classes.count}>{itemInstance.amount}</div>
+                        {isItemPlusLoading
+                            ? <CircularProgress style={{color: 'black'}} size={27}/>
+                            : <CartButton icon={"../F1Shop/icons/plus.svg"} onClick={plusCount}/>
+                        }
                     </div>
                 </div>
             </div>

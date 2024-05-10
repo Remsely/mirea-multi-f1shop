@@ -4,7 +4,12 @@ export const AuthContext = createContext(null);
 
 export const WishlistContext = createContext({
     wishlistSize: 0,
-    setWishlistSize: () => {}
+    setWishlistSize: () => {
+    }
 });
 
-export const CartContext = createContext(0);
+export const CartContext = createContext({
+    cartSize: 0,
+    setCartSize: () => {
+    }
+});

@@ -1,20 +1,34 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import CartItem from "../UI/cartItem/CartItem";
 import classes from "./CartItemList.module.css";
-import LocalStorage from "../../util/localStorage";
 
-const CartItemList = ({cart, remove}) => {
+const CartItemList = ({cart, setCart}) => {
     const calculateTotal = () => {
-        return LocalStorage.setCartItems().reduce((total, item) => {
-            const productTotal = item.price * item.count;
+        return cart.reduce((total, item) => {
+            const productTotal = item.price * item.amount;
             return total + productTotal;
         }, 0);
     };
 
-    const [fullPrice, setFullPrice] = useState(calculateTotal(cart));
+    const [fullPrice, setFullPrice] = useState(0);
 
-    function updatePrice() {
-        setFullPrice(calculateTotal(cart));
+    useEffect(() => {
+        setFullPrice(calculateTotal());
+    }, [cart]);
+
+    const removeProduct = (product) => {
+        setCart(cart.filter(p => p.id !== product.id))
+    }
+
+    const updateCart = (changedItem) => {
+        const itemIndex = cart.findIndex(item => item.id === changedItem.id);
+
+        const updatedCartItems = [
+            ...cart.slice(0, itemIndex),
+            changedItem,
+            ...cart.slice(itemIndex + 1)
+        ];
+        setCart(updatedCartItems);
     }
 
     return (
@@ -24,8 +38,8 @@ const CartItemList = ({cart, remove}) => {
                     <CartItem
                         key={cartItem.id}
                         item={cartItem}
-                        remove={remove}
-                        updateFullPrice={updatePrice}
+                        remove={removeProduct}
+                        updateCart={updateCart}
                     />)
                 }
                 <div className={classes.fullPrice}>{"Итого: " + fullPrice + "₽"}</div>

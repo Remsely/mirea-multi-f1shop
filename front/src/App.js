@@ -2,11 +2,12 @@ import './styles/App.css';
 import AppRouter from "./components/AppRouter";
 import NavBar from "./components/UI/NavBar/NavBar";
 import Footer from "./components/UI/footer/Footer";
-import {AuthContext, WishlistContext} from "./context";
+import {AuthContext, CartContext, WishlistContext} from "./context";
 import {useEffect, useState} from "react";
 import AuthService from "./service/AuthService";
 import axios from "axios";
 import WishlistService from "./service/WishlistService";
+import CartService from "./service/CartService";
 
 axios.defaults.baseURL = "http://localhost:8080/";
 
@@ -17,9 +18,11 @@ function App() {
     });
 
     const [wishlistSize, setWishlistSize] = useState(0);
+    const [cartSize, setCartSize] = useState(0);
 
     useEffect(() => {
         fetchWishlistCount();
+        fetchCartCount();
     }, []);
 
     const fetchWishlistCount = async () => {
@@ -27,16 +30,23 @@ function App() {
         setWishlistSize(wishlistItems.length);
     };
 
+    const fetchCartCount = async () => {
+        const cartItems = await CartService.getCart();
+        setCartSize(cartItems.length);
+    };
+
     return (
-        <WishlistContext.Provider value={{wishlistSize: wishlistSize, setWishlistSize: setWishlistSize}}>
-            <AuthContext.Provider value={{isAuth, setIsAuth}}>
-                <div className="App">
-                    <NavBar/>
-                    <AppRouter/>
-                    <Footer/>
-                </div>
-            </AuthContext.Provider>
-        </WishlistContext.Provider>
+        <AuthContext.Provider value={{isAuth, setIsAuth}}>
+            <CartContext.Provider value={{cartSize, setCartSize}}>
+                <WishlistContext.Provider value={{wishlistSize, setWishlistSize}}>
+                    <div className="App">
+                        <NavBar/>
+                        <AppRouter/>
+                        <Footer/>
+                    </div>
+                </WishlistContext.Provider>
+            </CartContext.Provider>
+        </AuthContext.Provider>
     );
 }
 

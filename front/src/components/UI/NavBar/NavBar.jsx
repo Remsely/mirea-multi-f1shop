@@ -1,33 +1,24 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import classes from "./NavBar.module.css";
-import LocalStorage from "../../../util/localStorage";
-import {subscribeToEvent} from "../../../util/events";
-import {WishlistContext} from "../../../context";
+import {CartContext, WishlistContext} from "../../../context";
 
 const NavBar = () => {
     const router = useNavigate()
-    const [cartItemCount, setCartItemCount] = useState(LocalStorage.getCartIDs().length);
     const [navBarItems, setNavBarItems] = useState([]);
 
     const {wishlistSize} = useContext(WishlistContext);
+    const {cartSize} = useContext(CartContext);
 
     useEffect(() => {
-        const handleCartChange = () => {
-            setCartItemCount(LocalStorage.getCartIDs().length);
-        };
-
-        subscribeToEvent('cartChanged', handleCartChange);
-
         setNavBarItems([
             {link: "/catalog", title: "Каталог", count: 0},
             {link: "/wishlist", title: "Избранное", count: wishlistSize},
-            {link: "/cart", title: "Корзина", count: cartItemCount},
+            {link: "/cart", title: "Корзина", count: cartSize},
             {link: "/about", title: "О нас", count: 0},
             {link: "/profile", title: "Профиль", count: 0}
         ])
-        console.log(":bpafpasdfa")
-    }, [cartItemCount, wishlistSize]);
+    }, [cartSize, wishlistSize]);
 
     return (
         <section className={classes.topNav}>

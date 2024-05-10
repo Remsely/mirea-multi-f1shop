@@ -3,9 +3,8 @@ import {useFetching} from "./useFetching";
 import WishlistService from "../service/WishlistService";
 import {WishlistContext} from "../context";
 
-export const useWishlist = (product) => {
-    const [productInstance, setProductInstance] = useState(product);
-    const [inWishlist, setInWishlist] = useState(product.inWishlist);
+export const useWishlist = (productInstance, setProductInstance) => {
+    const [inWishlist, setInWishlist] = useState(productInstance.inWishlist);
     const {setWishlistSize} = useContext(WishlistContext);
 
     const changeWishlistSize = useCallback((delta) => {
