@@ -9,30 +9,39 @@ import axios from "axios";
 import WishlistService from "./service/WishlistService";
 import CartService from "./service/CartService";
 
-axios.defaults.baseURL = "http://localhost:8080/";
+axios.defaults.baseURL = "http://188.225.79.252:8080/";
 
 function App() {
-    const [isAuth, setIsAuth] = useState(() => {
-        const token = AuthService.getToken();
-        return token !== null && token !== undefined
-    });
+    const [isAuth, setIsAuth] = useState(AuthService.getToken !== null);
 
     const [wishlistSize, setWishlistSize] = useState(0);
     const [cartSize, setCartSize] = useState(0);
 
     useEffect(() => {
-        fetchWishlistCount();
-        fetchCartCount();
-    }, []);
+        if (isAuth) {
+            fetchWishlistCount();
+            fetchCartCount();
+        }
+    }, [isAuth]);
 
     const fetchWishlistCount = async () => {
-        const wishlistItems = await WishlistService.getWishlist();
-        setWishlistSize(wishlistItems.length);
+        const wishlistItems = await WishlistService.getWishlist().then().catch(error => {
+            setIsAuth(false);
+            AuthService.logout();
+        });
+        if (wishlistItems) {
+            setWishlistSize(wishlistItems.length);
+        }
     };
 
     const fetchCartCount = async () => {
-        const cartItems = await CartService.getCart();
-        setCartSize(cartItems.length);
+        const cartItems = await CartService.getCart().then().catch(error => {
+            setIsAuth(false);
+            AuthService.logout();
+        });
+        if (cartItems) {
+            setCartSize(cartItems.length);
+        }
     };
 
     return (

@@ -23,7 +23,7 @@ const ProductInfo = ({product, setProduct}) => {
 
     return (
         <div className={classes.parentContainer}>
-            <img className={classes.img} src={"../" + product.image} alt={product.name}/>
+            <img className={classes.img} src={product.image} alt={product.name}/>
             <div className={classes.descriptionContainer}>
                 <p className={classes.description}>{product.description}</p>
                 <div className={classes.buttonsAndPriceContainer}>
@@ -65,7 +65,7 @@ const ProductInfo = ({product, setProduct}) => {
                 </div>
                 <img
                     className={classes.wishListIcon}
-                    src={"../../F1Shop/icons/close.svg"}
+                    src={"/icons/close.svg"}
                     alt={"name"}
                     onClick={() => router(-1)}
                 />

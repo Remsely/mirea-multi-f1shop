@@ -30,7 +30,7 @@ const ProductCard = ({product, remove}) => {
                     ? <CircularProgress style={{color: 'black'}} size={0.4}/>
                     : <img
                         className={classes.wishListIcon}
-                        src={"../F1Shop/icons/love-active.svg"}
+                        src={"/icons/love-active.svg"}
                         alt={"name"}
                         onClick={handleWishlistAction}
                     />
@@ -38,7 +38,7 @@ const ProductCard = ({product, remove}) => {
                     ? <CircularProgress style={{color: 'black'}} size={0.4}/>
                     : <img
                         className={classes.wishListIcon}
-                        src={"../F1Shop/icons/love-inactive.svg"}
+                        src={"/icons/love-inactive.svg"}
                         alt={"name"}
                         onClick={handleWishlistAction}
                     />

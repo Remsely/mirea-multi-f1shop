@@ -52,14 +52,14 @@ const Footer = () => {
                                 <a href="https://t.me/Remsely " target="_blank" rel="noreferrer">
                                     <img
                                         className={classes.icon}
-                                        src={"../../F1Shop/icons/telegram.svg"}
+                                        src={"/icons/telegram.svg"}
                                         alt={"icon"}
                                     />
                                 </a>
                                 <a href="https://vk.com/remsely" target="_blank" rel="noreferrer">
                                     <img
                                         className={classes.icon}
-                                        src={"../../F1Shop/icons/VK.svg"}
+                                        src={"/icons/VK.svg"}
                                         alt={"icon"}
                                     />
                                 </a>
@@ -67,14 +67,14 @@ const Footer = () => {
                                    rel="noreferrer">
                                     <img
                                         className={classes.icon}
-                                        src={"../../F1Shop/icons/youtube.svg"}
+                                        src={"/icons/youtube.svg"}
                                         alt={"icon"}
                                     />
                                 </a>
                                 <a href="https://github.com/Remsely/F1Shop" target="_blank" rel="noreferrer">
                                     <img
                                         className={classes.icon}
-                                        src={"../../F1Shop/icons/github.svg"}
+                                        src={"/icons/github.svg"}
                                         alt={"icon"}
                                     />
                                 </a>

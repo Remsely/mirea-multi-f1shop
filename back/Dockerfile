@@ -1,4 +1,11 @@
+FROM gradle:8.7.0-jdk17-alpine as builder
+WORKDIR /app
+COPY . /app/.
+
+RUN ./gradlew clean build -x test
+
 FROM amazoncorretto:17
-WORKDIR /back
-COPY build/libs/f1shop-0.0.1-SNAPSHOT.jar /back/back.jar
-CMD ["java", "-jar", "back.jar"]
+WORKDIR /app
+COPY --from=builder /app/build/libs/*.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]

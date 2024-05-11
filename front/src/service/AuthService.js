@@ -45,9 +45,11 @@ const getToken = () => {
     return null;
 }
 
-export default {
+const AuthService = {
     register,
     login,
     logout,
     getToken
 };
+
+export default AuthService;

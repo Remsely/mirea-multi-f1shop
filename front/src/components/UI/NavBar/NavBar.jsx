@@ -23,7 +23,7 @@ const NavBar = () => {
     return (
         <section className={classes.topNav}>
             <div className={classes.logoDiv} onClick={() => router(`/catalog`)}>
-                <img className={classes.logoImg} src={"/F1Shop/logo.svg"} alt="Логотип магазина"/>
+                <img className={classes.logoImg} src={"/logo.svg"} alt="Логотип магазина"/>
                 <div className={classes.shopName}>Мир Формулы 1</div>
             </div>
 

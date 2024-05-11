@@ -41,7 +41,9 @@ const getProducts = () => {
         });
 }
 
-export default {
+const ProductService = {
     getProducts,
     getProductByID
-}
+};
+
+export default ProductService;

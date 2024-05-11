@@ -61,8 +61,10 @@ const getWishlist = () => {
         });
 }
 
-export default {
+const ProductService = {
     getWishlist,
     removeFromWishlist,
     addToWishlist
-}
+};
+
+export default ProductService;

@@ -58,7 +58,7 @@ const CartItem = ({item, remove, updateCart}) => {
                         ? <CircularProgress style={{color: 'black'}} size={30}/>
                         : <CartButton
                             style={{border: "none"}}
-                            icon={"../F1Shop/icons/close.svg"}
+                            icon={"/icons/close.svg"}
                             onClick={removeItem}
                         />
                     }
@@ -71,14 +71,14 @@ const CartItem = ({item, remove, updateCart}) => {
                             :
                             itemInstance.amount > 1 &&
                             <CartButton
-                                icon={"../F1Shop/icons/minus.svg"}
+                                icon={"/icons/minus.svg"}
                                 onClick={minusCount}
                             />
                         }
                         <div className={classes.count}>{itemInstance.amount}</div>
                         {isItemPlusLoading
                             ? <CircularProgress style={{color: 'black'}} size={27}/>
-                            : <CartButton icon={"../F1Shop/icons/plus.svg"} onClick={plusCount}/>
+                            : <CartButton icon={"/icons/plus.svg"} onClick={plusCount}/>
                         }
                     </div>
                 </div>

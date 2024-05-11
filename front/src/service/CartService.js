@@ -61,9 +61,11 @@ const getCart = () => {
         });
 }
 
-export default {
+const CartService= {
     getCart,
     removeFromCart,
     addToCartInCart,
     addToCartInProductPage
-}
+};
+
+export default CartService;

@@ -1,20 +1,20 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import CartItem from "../UI/cartItem/CartItem";
 import classes from "./CartItemList.module.css";
 
 const CartItemList = ({cart, setCart}) => {
-    const calculateTotal = () => {
+    const calculateTotal = useCallback( () => {
         return cart.reduce((total, item) => {
             const productTotal = item.price * item.amount;
             return total + productTotal;
         }, 0);
-    };
+    }, [cart]);
 
     const [fullPrice, setFullPrice] = useState(0);
 
     useEffect(() => {
         setFullPrice(calculateTotal());
-    }, [cart]);
+    }, [cart, calculateTotal]);
 
     const removeProduct = (product) => {
         setCart(cart.filter(p => p.id !== product.id))

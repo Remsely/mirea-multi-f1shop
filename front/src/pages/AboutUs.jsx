@@ -58,7 +58,7 @@ const AboutUs = () => {
                 <ContentFrame>
                     <InfoTitle>Fueler Store - Ваш путь к официальному мерчандайзу Формулы 1</InfoTitle>
                     <InfoImage
-                        src={"../F1Shop/logos/fueler.webp"}
+                        src={"/logos/fueler.webp"}
                         alt={"fueler logo"}
                         style={{backgroundColor: "#000"}}
                         link={"https://fueler.store/collections/f1-2023-collection"}
@@ -71,7 +71,7 @@ const AboutUs = () => {
                     </InfoP>
                     <InfoTitle style={{marginTop: "10px"}}>F1 Merch - Энергия Формулы 1 в каждом товаре</InfoTitle>
                     <InfoImage
-                        src={"../F1Shop/logos/f1merch.jpg"}
+                        src={"/logos/f1merch.jpg"}
                         alt={"fueler logo"}
                         link={"https://merchf1.ru/"}
                     />

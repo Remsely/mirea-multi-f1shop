@@ -1,42 +1,47 @@
 version: '3.8'
 
 services:
-  frontend:
-    build: ./front/dockerfile
+  front:
+    build: ./front
     ports:
-      - "3000:3000"
+      - '3000:3000'
     depends_on:
-      - backend
-    networks:
-      - your-network
+      - back
 
-  backend:
-    build: ./back/dockerfile
+  back:
+    build: ./back
     ports:
-      - "8080:8080"
+      - '8080:8080'
+    depends_on:
+      postgresql-db:
+          condition: service_healthy
+
+  postgresql-db:
+    image: postgres:latest
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/f1shop
-      - SPRING_DATASOURCE_USERNAME=test
-      - SPRING_DATASOURCE_PASSWORD=test
-    depends_on:
-      - db
-    networks:
-      - your-network
-
-  db:
-    image: postgres:13.1-alpine
+      POSTGRES_DB: f1shop
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
     volumes:
-      - db-volume:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=f1shop
-      - POSTGRES_USER=test
-      - POSTGRES_PASSWORD=test
-    networks:
-      - your-network
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
 
-networks:
-  your-network:
-    driver: bridge
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: romainremsely@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    ports:
+      - '5050:80'
+    depends_on:
+      postgresql-db:
+        condition: service_healthy
 
 volumes:
-  db-volume:
+  postgres_data:
