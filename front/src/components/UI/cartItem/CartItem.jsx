@@ -66,10 +66,10 @@ const CartItem = ({item, remove, updateCart}) => {
                 <div className={classes.priceAndCountContainer}>
                     <div className={classes.price}>{(itemInstance.price * itemInstance.amount) + "₽"}</div>
                     <div className={classes.countContainer}>
-                        {itemInstance.amount > 1 &&
-                        isItemMinusLoading
+                        {isItemMinusLoading
                             ? <CircularProgress style={{color: 'black'}} size={3}/>
                             :
+                            itemInstance.amount > 1 &&
                             <CartButton
                                 icon={"../F1Shop/icons/minus.svg"}
                                 onClick={minusCount}

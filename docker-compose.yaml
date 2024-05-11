@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./front/dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - your-network
+
+  backend:
+    build: ./back/dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/f1shop
+      - SPRING_DATASOURCE_USERNAME=test
+      - SPRING_DATASOURCE_PASSWORD=test
+    depends_on:
+      - db
+    networks:
+      - your-network
+
+  db:
+    image: postgres:13.1-alpine
+    volumes:
+      - db-volume:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=f1shop
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test
+    networks:
+      - your-network
+
+networks:
+  your-network:
+    driver: bridge
+
+volumes:
+  db-volume:
