@@ -2,6 +2,8 @@ FROM gradle:8.7.0-jdk17-alpine as builder
 WORKDIR /app
 COPY . /app/.
 
+RUN chmod +x gradlew
+
 RUN ./gradlew clean build -x test
 
 FROM amazoncorretto:17
