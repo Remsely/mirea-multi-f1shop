@@ -1,13 +1,19 @@
 import axios from "axios";
 
-const API_URL = 'http://localhost:8080/auth/';
-
 const register = (email, password) => {
-    return axios
-        .post(API_URL + 'register', {
-            email,
-            password,
-        })
+    let config = {
+        method: 'post',
+        maxBody: Infinity,
+        url: `/auth/register`,
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        data: {
+            email: email,
+            password: password,
+        }
+    }
+    return axios.request(config)
         .then((response) => {
             if (response.data.accessToken) {
                 localStorage.setItem('user', JSON.stringify(response.data));
@@ -17,12 +23,20 @@ const register = (email, password) => {
 };
 
 const login = (email, password) => {
+    let config = {
+        method: 'post',
+        maxBody: Infinity,
+        url: `/auth/login`,
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        data: {
+            email: email,
+            password: password,
+        }
+    }
     localStorage.removeItem('user');
-    return axios
-        .post(API_URL + 'login', {
-            email,
-            password,
-        })
+    return axios.request(config)
         .then((response) => {
             if (response.data.accessToken) {
                 localStorage.setItem('user', JSON.stringify(response.data));
