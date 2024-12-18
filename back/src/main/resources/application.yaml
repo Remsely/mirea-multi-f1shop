@@ -5,9 +5,9 @@ security:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://postgresql-db:5432/f1shop
-    username: f1shop
-    password: f1shop348233083
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:f1_shop}
+    username: ${POSTGRES_USER:test}
+    password: ${POSTGRES_PASSWORD:test}
 
   jpa:
     hibernate:

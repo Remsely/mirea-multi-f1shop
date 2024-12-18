@@ -9,7 +9,7 @@ import axios from "axios";
 import WishlistService from "./service/WishlistService";
 import CartService from "./service/CartService";
 
-axios.defaults.baseURL = "http://188.225.79.252:8080/";
+axios.defaults.baseURL = "http://localhost:8080/";
 
 function App() {
     const [isAuth, setIsAuth] = useState(AuthService.getToken !== null);
