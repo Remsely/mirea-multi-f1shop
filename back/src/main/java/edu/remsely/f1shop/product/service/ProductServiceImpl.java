@@ -13,6 +13,7 @@ import edu.remsely.f1shop.user.entity.User;
 import edu.remsely.f1shop.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +30,7 @@ public class ProductServiceImpl implements ProductService {
     private final UserRepository userRepository;
     private final CartRepository cartRepository;
     private final ProductMapper productMapper;
+    private final JdbcTemplate jdbcTemplate;
 
     @Transactional
     @Override
@@ -132,12 +134,8 @@ public class ProductServiceImpl implements ProductService {
 
         checkProductAmount(product, amount);
 
-        CartEntity cartEntity = cartRepository.save(CartEntity.builder()
-                .user(user)
-                .product(product)
-                .amount(amount)
-                .build()
-        );
+        CartEntity cartEntity = cartRepository.addToCart(user.getId(), productId, amount);
+
         log.info("Product with id {} added to user's with id {} cart. Cart entity : {}", productId, userId, cartEntity);
         return cartEntity;
     }
@@ -148,11 +146,10 @@ public class ProductServiceImpl implements ProductService {
         User user = findUser(userId);
         Product product = findProduct(productId);
 
-        cartRepository.deleteById(UserAndProductPrimaryKey.builder()
-                .product(product)
-                .user(user)
-                .build()
-        );
+        String sql = "CALL remove_from_cart(?, ?)";
+
+        jdbcTemplate.update(sql, user.getId(), product.getId());
+
         log.info("Product with id {} removed from user's with id {} cart.", productId, userId);
     }
 

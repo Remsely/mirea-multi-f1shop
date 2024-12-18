@@ -59,9 +59,6 @@ CREATE TABLE IF NOT EXISTS order_products
 );
 
 
-
-
-
 -------------------------- TRIGGERS --------------------------
 
 CREATE TABLE IF NOT EXISTS delete_logs
@@ -225,6 +222,67 @@ CREATE OR REPLACE TRIGGER log_order_update
 EXECUTE FUNCTION log_update();
 
 
+-------------------------- PROCEDURES --------------------------
 
+CREATE OR REPLACE FUNCTION add_to_cart(
+    p_user_id bigint,
+    p_product_id bigint,
+    p_quantity integer
+)
+    RETURNS TABLE
+            (
+                user_id    bigint,
+                product_id bigint,
+                amount     integer
+            )
+    LANGUAGE plpgsql
+AS
+'
+    BEGIN
+        IF EXISTS (SELECT 1
+                   FROM cart_products
+                   WHERE cart_products.user_id = p_user_id
+                     AND cart_products.product_id = p_product_id) THEN
+            UPDATE cart_products
+            SET amount = p_quantity
+            WHERE cart_products.user_id = p_user_id
+              AND cart_products.product_id = p_product_id;
+            RETURN QUERY (select *
+                          from cart_products c
+                          where c.user_id = p_user_id
+                            and c.product_id = p_product_id);
+        ELSE
+            INSERT INTO cart_products (user_id, product_id, amount)
+            VALUES (p_user_id, p_product_id, p_quantity);
+            RETURN QUERY (select *
+                          from cart_products c
+                          where c.user_id = p_user_id
+                            and c.product_id = p_product_id);
+        END IF;
+        RETURN;
+    END;
+';
 
+CREATE OR REPLACE PROCEDURE remove_from_cart(IN p_user_id BIGINT, IN p_product_id BIGINT)
+    LANGUAGE plpgsql
+AS
+'
+    BEGIN
+        DELETE
+        FROM cart_products
+        WHERE user_id = p_user_id
+          AND product_id = p_product_id;
+    END;
+';
+
+CREATE OR REPLACE PROCEDURE clear_cart(IN p_user_id BIGINT)
+    LANGUAGE plpgsql
+AS
+'
+    BEGIN
+        DELETE
+        FROM cart_products
+        WHERE user_id = p_user_id;
+    END;
+';
 
