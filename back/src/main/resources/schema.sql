@@ -58,7 +58,34 @@ CREATE TABLE IF NOT EXISTS order_products
     CONSTRAINT POSITIVE_ORDER_PRODUCT_AMOUNT CHECK (amount >= 0)
 );
 
+
+
+
+
 -------------------------- TRIGGERS --------------------------
+
+CREATE TABLE IF NOT EXISTS delete_logs
+(
+    log_id       BIGSERIAL PRIMARY KEY,
+    table_name   VARCHAR(100) NOT NULL,
+    record_id    BIGINT       NOT NULL,
+    deleted_data TEXT,
+    deleted_by   VARCHAR(100),
+    deleted_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS update_logs
+(
+    log_id     BIGSERIAL PRIMARY KEY,
+    table_name VARCHAR(100) NOT NULL,
+    record_id  BIGINT       NOT NULL,
+    old_data   TEXT,
+    new_data   TEXT,
+    updated_by VARCHAR(100),
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
 
 CREATE OR REPLACE FUNCTION add_product_to_wishlist_after_insert() RETURNS TRIGGER
     LANGUAGE plpgsql
@@ -76,8 +103,128 @@ AS
     END;
 ';
 
-CREATE TRIGGER cart_after_insert
+CREATE OR REPLACE TRIGGER cart_after_insert
     AFTER INSERT
     ON cart_products
     FOR EACH ROW
 EXECUTE FUNCTION add_product_to_wishlist_after_insert();
+
+
+
+CREATE OR REPLACE FUNCTION check_product_before_delete()
+    RETURNS TRIGGER AS
+'
+    BEGIN
+        IF EXISTS (SELECT 1
+                   FROM cart_products
+                   WHERE product_id = OLD.id) THEN
+            RAISE EXCEPTION ''Product cannot be deleted as it is in the cart'';
+        END IF;
+
+        RETURN OLD;
+    END;
+' LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER product_before_delete
+    BEFORE DELETE
+    ON products
+    FOR EACH ROW
+EXECUTE FUNCTION check_product_before_delete();
+
+
+
+CREATE OR REPLACE FUNCTION check_product_before_insert() RETURNS TRIGGER
+    language plpgsql
+AS
+'
+    BEGIN
+        IF NEW.price <= 0 THEN
+            RAISE EXCEPTION ''Price must be greater than 0'';
+        END IF;
+
+        IF NEW.amount < 0 THEN
+            RAISE EXCEPTION ''Amount must be greater than or equal to 0'';
+        END IF;
+
+        RETURN NEW;
+    END;
+';
+
+CREATE OR REPLACE TRIGGER product_before_insert
+    BEFORE INSERT
+    ON products
+    FOR EACH ROW
+EXECUTE FUNCTION check_product_before_insert();
+
+
+
+CREATE OR REPLACE FUNCTION check_cart_update() RETURNS TRIGGER
+    LANGUAGE plpgsql
+AS
+'
+    BEGIN
+        IF NEW.amount < 0 THEN
+            RAISE EXCEPTION ''Amount in the cart cannot be negative'';
+        END IF;
+
+        RETURN NEW;
+    END;
+';
+
+CREATE OR REPLACE TRIGGER cart_before_update
+    BEFORE UPDATE
+    ON cart_products
+    FOR EACH ROW
+EXECUTE FUNCTION check_cart_update();
+
+
+
+CREATE OR REPLACE FUNCTION log_delete() RETURNS TRIGGER
+    LANGUAGE plpgsql
+AS
+'
+    BEGIN
+        INSERT INTO delete_logs (table_name, record_id, deleted_data, deleted_by, deleted_at)
+        VALUES (TG_TABLE_NAME,
+                OLD.id,
+                row_to_json(OLD)::TEXT,
+                current_user,
+                CURRENT_TIMESTAMP);
+        RETURN OLD;
+    END;
+';
+
+CREATE OR REPLACE TRIGGER log_order_delete
+    AFTER DELETE
+    ON orders
+    FOR EACH ROW
+EXECUTE FUNCTION log_delete();
+
+
+
+CREATE OR REPLACE FUNCTION log_update() RETURNS TRIGGER
+    language plpgsql
+AS
+'
+    BEGIN
+        INSERT INTO update_logs (table_name, record_id, old_data, new_data, updated_by, updated_at)
+        VALUES (TG_TABLE_NAME,
+                NEW.id,
+                row_to_json(OLD)::TEXT,
+                row_to_json(NEW)::TEXT,
+                current_user,
+                CURRENT_TIMESTAMP);
+        RETURN NEW;
+    END;
+';
+
+CREATE OR REPLACE TRIGGER log_order_update
+    AFTER UPDATE
+    ON orders
+    FOR EACH ROW
+EXECUTE FUNCTION log_update();
+
+
+
+
+
