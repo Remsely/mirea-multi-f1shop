@@ -21,11 +21,16 @@ const getProductByID = (id) => {
         });
 }
 
-const getProducts = () => {
+const getProducts = (categories, searchQuery, sortOrder) => {
     let config = {
         method: 'get',
         maxBody: Infinity,
         url: '/products',
+        params: {
+            categories: categories.join(','),
+            searchQuery: searchQuery,
+            sortOrder: sortOrder
+        },
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${AuthService.getToken()}`,

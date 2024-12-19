@@ -67,9 +67,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<ProductDto> getAllProducts(long userId) {
+    public List<ProductDto> getAllProducts(long userId, List<String> categories, String searchQuery, String sortOrder) {
         User user = findUser(userId);
-        List<Product> products = productRepository.findAll();
+        List<Product> products = productRepository.getFilteredProducts(String.join(",", categories), searchQuery, sortOrder);
 
         List<WishlistEntity> wishlistProducts = wishlistRepository.findByUser(user);
         Set<Long> wishlistProductsIds = getWishlistProductsIds(wishlistProducts);

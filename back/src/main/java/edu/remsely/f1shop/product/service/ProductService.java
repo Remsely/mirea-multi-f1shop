@@ -13,7 +13,7 @@ public interface ProductService {
 
     ProductDto getProduct(long productId, long userId);
 
-    List<ProductDto> getAllProducts(long userId);
+    List<ProductDto> getAllProducts(long userId, List<String> categories, String searchQuery, String sortOrder);
 
     ProductDto addProductToWishlist(long productId, long userId);
 

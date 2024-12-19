@@ -45,9 +45,14 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<ProductDto> getProducts(@AuthenticationPrincipal UserPrincipal user) {
+    public List<ProductDto> getProducts(
+            @RequestParam(required = false) List<String> categories,
+            @RequestParam(required = false) String searchQuery,
+            @RequestParam(required = false) String sortOrder,
+            @AuthenticationPrincipal UserPrincipal user
+    ) {
         long userId = user.getUserId();
         log.info("/products GET. User id : {}", userId);
-        return productService.getAllProducts(userId);
+        return productService.getAllProducts(userId, categories, searchQuery, sortOrder);
     }
 }

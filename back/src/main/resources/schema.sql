@@ -385,3 +385,32 @@ AS
         RETURN exists;
     END;
 ';
+
+CREATE OR REPLACE FUNCTION get_filtered_products(
+    p_categories CHARACTER VARYING,
+    p_search_query CHARACTER VARYING,
+    p_sort_order CHARACTER VARYING
+)
+    RETURNS TABLE
+            (
+                id          BIGINT,
+                name        VARCHAR(320),
+                category    VARCHAR(40),
+                description VARCHAR(2000),
+                image_link  VARCHAR(1000),
+                price       REAL,
+                amount      INTEGER
+            )
+    LANGUAGE plpgsql
+AS
+'
+    BEGIN
+        RETURN QUERY
+            SELECT *
+            FROM products p
+            WHERE p.category = ANY (string_to_array(p_categories, '',''))
+              AND (p_search_query IS NULL OR p.name ILIKE ''%'' || p_search_query || ''%'')
+            ORDER BY CASE WHEN p_sort_order = ''desc'' THEN p.price END DESC
+                   , CASE WHEN p_sort_order = ''asc'' THEN p.price END;
+    END;
+';

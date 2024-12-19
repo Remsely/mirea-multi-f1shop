@@ -13,4 +13,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             "join w.product p " +
             "where w.user = :user")
     List<Product> findInWishlist(User user);
+
+    @Query(value = "SELECT * from get_filtered_products(:categories, :searchQuery, :sortOrder)", nativeQuery = true)
+    List<Product> getFilteredProducts(String categories, String searchQuery, String sortOrder);
 }
