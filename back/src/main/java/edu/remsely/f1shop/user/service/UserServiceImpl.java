@@ -28,9 +28,11 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public User addUser(User user) {
-        user.setRole(UserRole.USER);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        User savedUser = userRepository.save(user);
+        User savedUser = userRepository.createUser(
+                user.getEmail(),
+                passwordEncoder.encode(user.getPassword()),
+                UserRole.USER.toString()
+        );
         log.info("User saved successful. User {}", savedUser);
         return savedUser;
     }
