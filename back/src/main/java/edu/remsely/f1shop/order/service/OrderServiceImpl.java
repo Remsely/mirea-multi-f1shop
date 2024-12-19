@@ -7,7 +7,6 @@ import edu.remsely.f1shop.order.mapper.OrderMapper;
 import edu.remsely.f1shop.order.repository.OrderProductRepository;
 import edu.remsely.f1shop.order.repository.OrderRepository;
 import edu.remsely.f1shop.product.entity.CartEntity;
-import edu.remsely.f1shop.product.entity.Product;
 import edu.remsely.f1shop.product.repository.CartRepository;
 import edu.remsely.f1shop.product.repository.ProductRepository;
 import edu.remsely.f1shop.user.entity.User;
@@ -46,24 +45,17 @@ public class OrderServiceImpl implements OrderService {
         if (cartEntities.isEmpty())
             throw new RuntimeException("Cart Is Empty!");
 
-        OrderEntity savedOrder = orderRepository.save(order);
-        Set<OrderProductEntity> orderProductEntities = getCartProductsIds(cartEntities, savedOrder);
+        OrderEntity savedOrder = orderRepository.createOrder(
+                userId,
+                order.getRecipientsFullName(),
+                order.getRecipientsPhoneNumber(),
+                order.getRecipientsEmail(),
+                order.getAddress(),
+                order.getIntercom(),
+                order.getComments()
+        );
 
-        List<Product> productsToUpdateCount = orderProductEntities.stream()
-                .map(orderProductEntity -> {
-                    Product product = orderProductEntity.getProduct();
-                    int newAmount = product.getAmount() - orderProductEntity.getAmount();
-
-                    if (newAmount < 0)
-                        throw new RuntimeException("No enough product amount!");
-
-                    product.setAmount(newAmount);
-                    return product;
-                }).toList();
-
-        productRepository.saveAll(productsToUpdateCount);
-        List<OrderProductEntity> savedOrderProducts = orderProductRepository.saveAll(orderProductEntities);
-        cartRepository.deleteAll(cartEntities);
+        List<OrderProductEntity> savedOrderProducts = orderProductRepository.findByOrder(savedOrder);
 
         log.info("User's with id {} order added. Order length : {}", userId, savedOrderProducts.size());
         return orderMapper.toDto(savedOrder, orderMapper.toDtoList(savedOrderProducts));

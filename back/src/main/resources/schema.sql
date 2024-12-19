@@ -223,7 +223,6 @@ CREATE OR REPLACE TRIGGER log_order_update
 EXECUTE FUNCTION log_update();
 
 
--------------------------- PROCEDURES --------------------------
 
 CREATE OR REPLACE FUNCTION add_to_cart(
     p_user_id bigint,
@@ -276,17 +275,6 @@ AS
     END;
 ';
 
-CREATE OR REPLACE PROCEDURE clear_cart(IN p_user_id BIGINT)
-    LANGUAGE plpgsql
-AS
-'
-    BEGIN
-        DELETE
-        FROM cart_products
-        WHERE user_id = p_user_id;
-    END;
-';
-
 CREATE OR REPLACE FUNCTION add_user(
     IN p_email CHARACTER VARYING,
     IN p_password CHARACTER VARYING,
@@ -310,3 +298,74 @@ AS
                       where u.email = p_email);
     END;
 ';
+
+CREATE OR REPLACE PROCEDURE clear_cart(IN p_user_id BIGINT)
+    LANGUAGE plpgsql
+AS
+'
+    BEGIN
+        DELETE
+        FROM cart_products
+        WHERE user_id = p_user_id;
+    END;
+';
+
+CREATE OR REPLACE FUNCTION create_order(
+    p_user_id BIGINT,
+    p_recipients_full_name CHARACTER VARYING,
+    p_recipients_phone_number CHARACTER VARYING,
+    p_recipients_email CHARACTER VARYING,
+    p_address CHARACTER VARYING,
+    p_intercom CHARACTER VARYING,
+    p_comments CHARACTER VARYING DEFAULT NULL::CHARACTER VARYING
+)
+    RETURNS TABLE
+            (
+                id                      BIGINT,
+                user_id                 BIGINT,
+                date                    TIMESTAMP,
+                recipients_full_name    CHARACTER VARYING,
+                recipients_phone_number CHARACTER VARYING,
+                recipients_email        CHARACTER VARYING,
+                address                 CHARACTER VARYING,
+                intercom                CHARACTER VARYING,
+                comments                CHARACTER VARYING
+            )
+    LANGUAGE plpgsql
+AS
+'
+    DECLARE
+        created_order_id BIGINT;
+    BEGIN
+        INSERT INTO orders (user_id, date, recipients_full_name, recipients_phone_number, recipients_email, address,
+                            intercom, comments)
+        VALUES (p_user_id, NOW(), p_recipients_full_name, p_recipients_phone_number, p_recipients_email, p_address,
+                p_intercom, p_comments)
+        RETURNING orders.id
+            INTO created_order_id;
+
+
+        INSERT INTO order_products (order_id, product_id, amount, price)
+        SELECT created_order_id,
+               p.id,
+               c.amount,
+               p.price
+        FROM cart_products c
+                 JOIN products p ON c.product_id = p.id
+        WHERE c.user_id = p_user_id;
+
+
+        UPDATE products p
+        SET amount = p.amount - c.amount
+        FROM cart_products c
+        WHERE c.product_id = p.id
+          AND c.user_id = p_user_id;
+
+        CALL clear_cart(p_user_id);
+
+        RETURN QUERY (SELECT *
+                      FROM orders o
+                      WHERE o.id = created_order_id);
+    END;
+';
+
