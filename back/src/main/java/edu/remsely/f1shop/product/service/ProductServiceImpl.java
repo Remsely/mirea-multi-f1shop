@@ -205,6 +205,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     private Boolean isProductInCart(Product product, User user) {
-        return cartRepository.existsByProductAndUser(product, user);
+        return cartRepository.existsByProductAndUser(product.getId(), user.getId());
     }
 }

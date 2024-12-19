@@ -369,3 +369,19 @@ AS
     END;
 ';
 
+CREATE OR REPLACE FUNCTION is_in_cart(p_user_id BIGINT, p_product_id BIGINT) returns boolean
+    LANGUAGE plpgsql
+AS
+'
+    DECLARE
+        exists BOOLEAN;
+    BEGIN
+        SELECT EXISTS (SELECT 1
+                       FROM cart_products
+                       WHERE user_id = p_user_id
+                         AND product_id = p_product_id)
+        INTO exists;
+
+        RETURN exists;
+    END;
+';
