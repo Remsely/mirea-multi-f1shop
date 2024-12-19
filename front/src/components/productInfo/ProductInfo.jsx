@@ -29,7 +29,7 @@ const ProductInfo = ({product, setProduct}) => {
                 <div className={classes.buttonsAndPriceContainer}>
                     <div className={classes.price}>{product.price + "₽"}</div>
                     <div className={classes.buttonsContainer}>
-                        {inWishlist
+                        {product.inWishlist
                             ? isWishlistRemovalLoading
                                 ?
                                 <MyCheckedButton>

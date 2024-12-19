@@ -20,11 +20,11 @@ export const useCart = (productInstance, setProductInstance) => {
 
     const addToCartFetching = useFetching(async () => {
         let p = await CartService.addToCartInProductPage(productInstance.id, 1);
-        setProductInstance(p);
         setInCart(p.inCart);
         setInWishlist(p.inWishlist);
         changeCartSize(1);
-        changeWishlistSize(1);
+        if (!productInstance.inWishlist) changeWishlistSize(1);
+        setProductInstance(p);
     });
 
     const removeFromCartFetching = useFetching(async () => {
